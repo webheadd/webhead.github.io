@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import 'mixins';
+$font-family: Montserrat, sans-serif;
+$color-1: #222426;
+$socialIcon: #00FFF0;
+$color-3: #2F3134;
+$size: '1.5em';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+li {
+    list-style-type: none;
+}
+
+html {
+    font-family: $font-family;
+}
+section {
+    h1, h2, h3, h4{
+        text-transform: uppercase;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 0.2em 1.2em;
+    background: $color-1;
+    position: fixed;
+    z-index: 10;
+
+    #logo {
+        padding: 0.5em 0;
+        color: $socialIcon;
+        cursor: pointer;
+        font-size: 1.5em;
+        
+    }
+
+    #nav {
+        width: 70%;
+        height: auto;
+        display: none;
+    }
+    #burger {
+        display: block;
+        width: 40px;
+        height: 35px;
+        position: relative;
+        cursor: pointer;
+        @include flexCenter;
+
+        span {
+            display: block;
+            width: 70%;
+            height: 2.5px;
+            border-radius: 3px;
+            background: #fff;
+            margin: 0 auto;
+            position: absolute;
+        }
+        span:nth-child(2) {
+            margin-top: 8px;
+        }
+        span:nth-child(3) {
+            margin-top: -8px;
+        }
+    }
+}
+
+#banner {
+    background: $color-1;
+    width: 100%;
+    height: 450px;
+    @include flexCenter;
+    flex-direction: column;
+    color: #fff;
+    clip-path: polygon(100% 0, 100% 85%, 50% 95%, 0 85%, 0 0);
+    margin-bottom: -80px;
+    h1 {
+        margin-bottom: 0.5em;
+        font-size: 1.5em;
+        
+        span {
+            color: $socialIcon;
+        }
+    }
+    h2 {
+        margin-bottom: 0.5em;
+        font-size: 1.3em;
+    }
+    .banner__btn {
+        display: block;
+        border: 1.5px solid #fff;
+        color: white;
+        font-size: 0.9em;
+        padding: 0.6em 0.7em;
+        text-transform: uppercase;
+        margin-top: 0.5em;
+        transition: 0.5s;
+
+
+        &:hover {
+            color: $socialIcon;
+            border-color: $socialIcon;
+        }
+    }
+}
+
+// Portoflio section
+
+#folio {
+    width: 100%;
+    height: auto;
+    background: $color-3;
+    margin-bottom: 1.5em;
+    border: 1px solid transparent;
+    .section__header {
+        margin-top: 3em;
+        text-align: center;
+        color: #fff;
+    }
+    ul {
+        width: 100%;
+        height: auto;
+        margin: 1.5em 0 0 0;
+        
+        .folio__li {
+            width: 100%;
+            height: auto;
+            display: block;
+            font-size: 0;
+            position: relative;
+            overflow: hidden;
+
+            .folio__link {
+                width: 100%;
+                height: 100%;
+                display: block;
+
+                .folio__img {
+                    width: 100%;
+                    height: auto;
+                    background: $color-1;
+                }
+                
+                .folio__overlay {
+                    font-size: 16px !important;
+                    width: 100%;
+                    height: 100%;
+                    @include flexCenter;
+                    flex-direction: column;
+                    position: absolute;
+                    z-index: 2;
+                    top: 0;
+                    left: 0;
+                    color: #fff;
+                    background: rgba(0, 0, 0, 0.8);
+                    transform: translateY(100%);
+                    transition: 0.2s;
+
+                    .folio__title {
+                        font-size: 2em;
+                        letter-spacing: 0.2em;
+                    }
+                }
+                &:hover > .folio__overlay {
+                    transform: translateY(0);
+                }
+            }
+            
+             
+        }
+    }
+}
+
+// about section
+#about {
+    width: 100%;
+    height: auto;
+    margin-bottom: -85px;
+    z-index: 5;
+    border: 1px solid black;
+    background: #fff;
+    clip-path: polygon(100% 0, 100% 95%, 50% 97%, 0 95%, 0 0);
+    .section__header {
+        text-align: center;
+        margin: 1.5em 0;
+    }
+    
+    .about__profpic {
+        display: block;
+        width: 70%;
+        max-width: 320px;
+        height: 220px;
+        margin: 0 auto 1em auto;
+        border: 1px solid black;
+    }
+    .about__title {
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
+    }
+    .about__desc {
+        display: block;
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        text-align: center;
+        margin: 0 auto 1.5em auto;
+    }
+    .about__skills {
+        text-align: center;
+        margin-bottom: 1em;
+    }
+    ul {
+        width: 100%;
+        height: auto;
+        margin-bottom: 7em;
+        .about__li {
+            width: 50%;
+            height: auto;
+            margin: 1em auto;
+            text-align: center;
+
+            .about__img {
+                width: 7em;
+                height: 7em;
+                background: #ccc;
+                border-radius: 50%;
+                display: block;
+                margin: 0 auto 1rem auto;
+            }
+            .about__imgCaption {
+                font-size: 1.2em;
+                margin-bottom: 0.5rem;
+            }
+            .about__imgDesc {
+                width: 85%;
+                margin: 0 auto 0.5rem auto;
+            }
+        }
+    }
+}
+
+// contact section
+
+#contact {
+    width: 100%;
+    height: auto;
+    background: $color-1;
+    border: 1px solid transparent;
+    
+    .contact__header {
+        color: #fff;
+        margin: 2em 0 0.5em 0;
+        text-align: center;
+    }
+    .wrapper {
+        width: 90%;
+        max-width: 350px;
+        height: auto;
+        margin: 0 auto;
+
+        form {
+            width: 100%;
+            height: auto;
+        }
+        #name, #email, #txtArea {
+            width: 98%;
+            margin: 0.3em auto;
+            padding: 0.5em;
+        }
+        #txtArea {
+            height: 100px;
+        }
+        #submit {
+            display: block;
+            padding: 0.3em 0.5em;
+            margin-bottom: 1em;
+            font-size: 1em;
+            border: none;
+            background: #fff;
+            cursor: pointer;
+        }
+    }
+}
+
+// footer
+footer {
+    width: 100%;
+    height: 100px;
+    background: $color-3;
+    @include flexCenter;
+    flex-direction: column;
+    ul {
+        width: 100%;
+        height: auto;
+        margin-bottom: 0.5em;
+        text-align: center;
+    }
+    li {
+        width: 40px;
+        height: auto;
+        display: inline-block;
+        text-align: center;
+        a {
+            width: 100%;
+            height: 100%;
+            
+            i {
+                width: 100%;
+                height: 100%;
+                color: $socialIcon;
+                transition: 0.5s;
+            }
+
+            &:hover > i {
+                color: #fff;
+            }
+        }
+        
+    }
+    p {
+        color: #fff;
+    }
+}
+
