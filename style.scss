@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @import 'mixins';
+
+
+//media breakpoints
+$tablet: 549px;
+$laptops: 769px;
+$large: 1171px;
+
 $font-family: Montserrat, sans-serif;
 $color-1: #222426;
 $socialIcon: #00FFF0;
 $color-3: #2F3134;
-$size: '1.5em';
 
 * {
     padding: 0;
@@ -28,6 +34,17 @@ section {
     }
     h1 {
         font-size: 1.5em;
+        //media breakpoint
+        @include mediaMd {
+            font-size: 1.7em;
+        }
+        @include mediaLg {
+            font-size: 1.8em;
+        }
+        @include mediaXl {
+            font-size: 1.9em;
+        }
+        //end of media breakpoint
     }
 }
 header {
@@ -80,6 +97,19 @@ header {
     }
 }
 
+// banner animation
+@keyframes scrollAnimation {
+    0% {
+        transform: translateY(-30px);
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+        visibility: visible;
+    }
+}
 #banner {
     background: $color-1;
     width: 100%;
@@ -88,11 +118,36 @@ header {
     flex-direction: column;
     color: #fff;
     clip-path: polygon(100% 0, 100% 85%, 50% 95%, 0 85%, 0 0);
+    position: relative;
     margin-bottom: -80px;
+    //media breakpoint
+    @include mediaMd {
+        height: 550px;
+    }
+    @include mediaLg {
+        height: 600px;
+    }
+    @include mediaXl {
+        height: 700px;
+    }
+    //end of media breakpoint
     h1 {
         margin-bottom: 0.5em;
         font-size: 1.5em;
+        @include in;
+        animation: scrollAnimation 0.5s 0.5s ease-in forwards;
         
+        //media breakpoint
+        @include mediaMd {
+            font-size: 2em;
+        }
+        @include mediaLg {
+            font-size: 2.5em;
+        }
+        @include mediaXl {
+            font-size: 3em;
+        }
+        //end of media breakpoint
         span {
             color: $socialIcon;
         }
@@ -100,22 +155,94 @@ header {
     h2 {
         margin-bottom: 0.5em;
         font-size: 1.3em;
+        @include in;
+        animation: scrollAnimation 0.5s 1s ease-in forwards;
+        //media breakpoint
+        @include mediaMd {
+            font-size: 1.6em;
+        }
+        @include mediaLg {
+            font-size: 1.8em;
+        }
+        @include mediaXl {
+            font-size: 2em;
+        }
+        //end of media breakpoint
     }
     .banner__btn {
         display: block;
         border: 1.5px solid #fff;
-        color: white;
-        font-size: 0.9em;
+        color: #fff;
+        font-size: 0.8em;
         padding: 0.6em 0.7em;
         text-transform: uppercase;
+        position: relative;
         margin-top: 0.5em;
         transition: 0.5s;
-
-
-        &:hover {
-            color: $socialIcon;
-            border-color: $socialIcon;
+        font-weight: bold;
+        @include in;
+        animation: scrollAnimation 0.5s 1s ease-in forwards;
+        z-index: 1;
+        //media breakpoint
+        @include mediaMd {
+            font-size: 1em;
         }
+        @include mediaLg {
+            font-size: 1.1em;
+        }
+        @include mediaXl {
+            font-size: 1.2em;
+        }
+        //end of media breakpoint
+        
+        &::before {
+            content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(220, 0, 0, 0.8);
+                z-index: -1;
+                transform: scaleX(0);
+                transition: 0.3s;
+            }
+            &:hover::before {
+                transform: scaleX(1);
+            }
+    }
+    .banner__down {
+        display: block;
+        width: 15px;
+        height: 35px;
+        border: 1px solid white;
+        position: absolute;
+        border-radius: 7.5px;
+        bottom: 40px;
+        
+        span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: $socialIcon;
+            border-radius: 50%;
+            margin: 0 auto;
+            position: relative;
+
+            animation: upDown 1s ease-in-out infinite alternate;
+            
+        }
+    }
+}
+//updown animation
+
+@keyframes upDown {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: 70%;
     }
 }
 
@@ -124,19 +251,28 @@ header {
 #folio {
     width: 100%;
     height: auto;
-    background: $color-3;
     margin-bottom: 1.5em;
     border: 1px solid transparent;
+    
     .section__header {
         margin-top: 3em;
         text-align: center;
-        color: #fff;
+        color: #000;
     }
     ul {
         width: 100%;
         height: auto;
         margin: 1.5em 0 0 0;
-        
+        //media breakpoint
+        @include mediaLg {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        @include mediaXl {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        //end of media breakpoint
         .folio__li {
             width: 100%;
             height: auto;
@@ -144,7 +280,14 @@ header {
             font-size: 0;
             position: relative;
             overflow: hidden;
-
+            //media breakpoint
+            @include mediaLg {
+                width: 50%;
+            }
+            @include mediaXl {
+                width: 50%;
+            }
+            //end of media breakpoint
             .folio__link {
                 width: 100%;
                 height: 100%;
@@ -154,6 +297,7 @@ header {
                     width: 100%;
                     height: auto;
                     background: $color-1;
+                    transition: 0.3s;
                 }
                 
                 .folio__overlay {
@@ -168,17 +312,84 @@ header {
                     left: 0;
                     color: #fff;
                     background: rgba(0, 0, 0, 0.8);
-                    transform: translateY(100%);
+                    
                     transition: 0.2s;
+                    //media breakpoint
+                    @include mediaLg {
+                        transform: translateY(100%);
+                    }
+                    @include mediaXl {
+                        transform: translateY(100%);
+                    }
+                    //end of media breakpoint
 
                     .folio__title {
-                        font-size: 2em;
-                        letter-spacing: 0.2em;
+                        font-size: 1.5em;
+                        color: $socialIcon;
+                        letter-spacing: 0.1em;
+                        //media breakpoint
+                        @include mediaMd {
+                        font-size: 1.7em;
+                        }
+                        @include mediaLg {
+                        font-size: 1.8em;
+                        }
+                        @include mediaXl {
+                        font-size: 1.9em;
+                        }
+                        //end of media breakpoint
+                    }
+                    ul {
+                        width: 100%;
+                        height: auto;
+                        @include flexCenter;
+                        li {
+                            margin: 0 1em;
+                        }
+                    }
+                    .demo_btn {
+                        display: block;
+                        width: 80px;
+                        text-align: center;
+                        height: auto;
+                        padding: 0.3em;
+                        position: relative;
+                        color: #fff;
+                        border: 1.5px solid #fff;
+                        overflow: hidden;
+                        &::before {
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(220, 0, 0, 0.9);
+                            z-index: -1;
+                            transform: scaleX(0);
+                            transition: 0.3s;
+                        }
+                        &:hover::before {
+                            transform: scaleX(1);
+                        }
                     }
                 }
-                &:hover > .folio__overlay {
-                    transform: translateY(0);
+                &:hover > .folio__img {
+                    transform: scale(1.05);
                 }
+                //media breakpoint
+                @include mediaLg {
+                    &:hover > .folio__overlay {
+                        transform: translateY(0);
+                    }
+                }
+                @include mediaXl {
+                    &:hover > .folio__overlay {
+                        transform: translateY(0);
+                    }
+                }
+                //end of media breakpoint
             }
             
              
@@ -190,28 +401,28 @@ header {
 #about {
     width: 100%;
     height: auto;
-    margin-bottom: -85px;
+    margin-bottom: -60px;
     z-index: 5;
-    border: 1px solid black;
+    border: 1px solid transparent;
     background: #fff;
-    clip-path: polygon(100% 0, 100% 95%, 50% 97%, 0 95%, 0 0);
+    clip-path: polygon(100% 0, 100% 95%, 50% 100%, 0 95%, 0 0);
+
+    @include mediaMd {
+        margin-bottom: -70px;
+        clip-path: polygon(100% 0, 100% 93%, 50% 100%, 0 93%, 0 0);
+    }
+    @include mediaLg {
+        margin-bottom: -70px;
+        clip-path: polygon(100% 0, 100% 91%, 50% 100%, 0 91%, 0 0);
+    }
+    @include mediaXl {
+        margin-bottom: -70px;
+        clip-path: polygon(100% 0, 100% 89%, 50% 100%, 0 89%, 0 0);
+    }
+    //end of media breakpoint
     .section__header {
         text-align: center;
-        margin: 1.5em 0;
-    }
-    
-    .about__profpic {
-        display: block;
-        width: 70%;
-        max-width: 320px;
-        height: 220px;
-        margin: 0 auto 1em auto;
-        border: 1px solid black;
-    }
-    .about__title {
-        text-align: center;
-        font-size: 1.2em;
-        margin-bottom: 0.5em;
+        margin: 0.8em 0;
     }
     .about__desc {
         display: block;
@@ -220,36 +431,84 @@ header {
         height: auto;
         text-align: center;
         margin: 0 auto 1.5em auto;
+        //media breakpoint
+        @include mediaMd {
+            max-width: 400px;
+        }
+        @include mediaLg {
+            max-width: 450px;
+        }
+        @include mediaXl {
+            max-width: 500px;
+        }
+        //end of media breakpoint
     }
     .about__skills {
         text-align: center;
         margin-bottom: 1em;
     }
+    .wrapper {
+        width: 95%;
+        margin: 0 auto;
+        height: auto;
+    }
     ul {
         width: 100%;
         height: auto;
         margin-bottom: 7em;
+
+        //media breakpoint
+        @include mediaMd {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        @include mediaLg {
+            display: flex;
+        }
+        @include mediaXl {
+            display: flex;
+        }
+        //end of media breakpoint
+
         .about__li {
             width: 50%;
             height: auto;
-            margin: 1em auto;
+            margin: 1.5em auto;
             text-align: center;
 
             .about__img {
-                width: 7em;
-                height: 7em;
-                background: #ccc;
-                border-radius: 50%;
                 display: block;
                 margin: 0 auto 1rem auto;
-            }
-            .about__imgCaption {
-                font-size: 1.2em;
-                margin-bottom: 0.5rem;
+                color: $color-1;
+                transition: 0.5s;
             }
             .about__imgDesc {
                 width: 85%;
                 margin: 0 auto 0.5rem auto;
+                 //media breakpoint
+                @include mediaMd {
+                    width: 80%;
+                }
+                @include mediaLg {
+                    width: 75%;
+                }
+                @include mediaXl {
+                    width: 70%;
+                }
+                //end of media breakpoint
+            }
+
+            &:nth-child(1):hover > .about__img {
+                color: #E25223;
+            }
+            &:nth-child(2):hover > .about__img {
+                color: #1472B6;
+            }
+            &:nth-child(3):hover > .about__img {
+                color: #DEA02B;
+            }
+            &:nth-child(4):hover > .about__img {
+                color: #CA6698;
             }
         }
     }
@@ -265,7 +524,7 @@ header {
     
     .contact__header {
         color: #fff;
-        margin: 2em 0 0.5em 0;
+        margin: 3em 0 1em 0;
         text-align: center;
     }
     .wrapper {
@@ -273,7 +532,17 @@ header {
         max-width: 350px;
         height: auto;
         margin: 0 auto;
-
+        //media breakpoint
+        @include mediaMd {
+            max-width: 450px;
+        }
+        @include mediaLg {
+            max-width: 550px;
+        }
+        @include mediaXl {
+            max-width: 650px;
+        }
+        //end of media breakpoint
         form {
             width: 100%;
             height: auto;
@@ -282,9 +551,33 @@ header {
             width: 98%;
             margin: 0.3em auto;
             padding: 0.5em;
+            border: none;
+            background: rgba(255, 255, 255, 0.945);
+            //media breakpoint
+            @include mediaMd {
+                margin: 0.4em auto;
+            }
+            @include mediaLg {
+                margin: 0.5em auto;
+            }
+            @include mediaXl {
+                margin: 0.6em auto;
+            }
+            //end of media breakpoint
         }
         #txtArea {
             height: 100px;
+            //media breakpoint
+            @include mediaMd {
+                height: 150px;
+            }
+            @include mediaLg {
+                height: 200px;
+            }
+            @include mediaXl {
+                height: 250px;
+            }
+            //end of media breakpoint
         }
         #submit {
             display: block;
@@ -294,6 +587,24 @@ header {
             border: none;
             background: #fff;
             cursor: pointer;
+            transition: 0.3s;
+            &:hover {
+                background: $color-3;
+                color: $socialIcon;
+                border: 1px solid #fff;
+            }
+
+            //media breakpoint
+            @include mediaMd {
+                padding: 0.5em 0.7em;
+            }
+            @include mediaLg {
+                padding: 0.6em 0.8em;
+            }
+            @include mediaXl {
+                padding: 0.6em 0.8em;
+            }
+            //end of media breakpoint
         }
     }
 }

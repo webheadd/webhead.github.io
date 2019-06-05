@@ -3,3 +3,32 @@
     justify-content: center;
     align-items: center;
 }
+
+@mixin in {
+    transform: translateY(-50px);
+    opacity: 0;
+    visibility: hidden;
+}
+
+//media queries
+
+//tablet
+@mixin mediaMd {
+    @media screen and (min-width: $tablet) and (max-width: $laptops - 1) {
+        @content;
+    }
+}
+
+// desktop & laptop
+@mixin mediaLg {
+    @media screen and (min-width: $laptops) and (max-width: $large - 1) {
+        @content;
+    }
+}
+
+// extra large
+@mixin mediaXl {
+    @media screen and (min-width: $large) {
+        @content;
+    }
+}
