@@ -1,3 +1,4 @@
+window.onload = () => {
 var menuIcon = document.querySelector("#burger");
 var navMenu = document.querySelector("#nav");
 var closeBtn = document.querySelector("#closeBtn");
@@ -10,8 +11,6 @@ var about_desc = document.querySelectorAll(".about__desc");
 var about_img = document.querySelectorAll(".about__img");
 var contact_form = document.querySelectorAll(".contact__animate");
 var arr = Array.from(navLinks);
-
-
 //animate when scrolled
 window.addEventListener('scroll', animate);
 var currentPosition = window.innerHeight / 1.2;
@@ -105,3 +104,4 @@ function slideIn(e) {
         navMenu.classList.remove("slide");
     }
 }
+};
