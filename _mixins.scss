@@ -1,3 +1,8 @@
+//media breakpoints
+$tablet: 549px;
+$laptops: 769px;
+$large: 1171px;
+
 @mixin flexCenter {
     display: flex;
     justify-content: center;
@@ -5,9 +10,16 @@
 }
 
 @mixin in {
-    transform: translateY(-50px);
+    transform: translateY(-30px);
     opacity: 0;
     visibility: hidden;
+    transition: 0.7s ease-in;
+}
+@mixin left {
+    transform: translateX(-30px);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.7s ease-in;
 }
 
 //media queries
