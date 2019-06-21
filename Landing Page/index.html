@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  </head>
+  <body>
+    <header id="header">
+      <!-- margin -->
+      <div class="wrapper">
+        <a href="#banner" id="header__logo">
+          <img alt="Logo" src="./img/maya.png" id="header-img" />
+        </a>
+        <nav id="nav-bar">
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#video" class="nav-link">About</a>
+          <a href="#my-works" class="nav-link">My Works</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+      </div>
+      <p id="menu-open">
+        <span></span>
+        <span></span>
+        <span></span>
+      </p>
+    </header>
+    <main>
+      <section id="banner">
+        <div id="overlay">
+          <h1>Freshly Baked Everyday</h1>
+          <h4>cakes, cupcakes, etc.</h4>
+        </div>
+      </section>
+
+      <section id="services">
+        <h2 class="sec_mainhead">Services</h2>
+        <div class="wrapper">
+          <ul>
+            <li>
+              <img
+                alt="Cakes"
+                src="https://images.unsplash.com/photo-1464347744102-11db6282f854?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1187&q=80"
+              />
+              <h2 class="services_h2">Designer Cakes</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <a href="##" class="more">See More</a>
+            </li>
+            <li>
+              <img
+                alt="Cupcakes"
+                src="https://images.unsplash.com/photo-1534768368122-aa9bbb3a8d62?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+              />
+              <h2 class="services_h2">Creative Cupcakes</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <a href="##" class="more">See More</a>
+            </li>
+            <li>
+              <img
+                alt="Other"
+                src="https://images.unsplash.com/photo-1539735513527-6b1058cc30f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1053&q=80"
+              />
+              <h2 class="services_h2">Other Pastries</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <a href="##" class="more">See More</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="about">
+        <h2 class="sec_mainhead">About Me</h2>
+        <div class="wrapper">
+          <iframe
+            id="video"
+            width="500"
+            height="300"
+            src="https://www.youtube.com/embed/tgbNymZ7vqY"
+          >
+          </iframe>
+        </div>
+      </section>
+
+      <section id="my-works">
+        <h2 class="sec_mainhead">Prices</h2>
+        <div class="wrapper">
+          <ul>
+            <li>
+              <h2 class="works_h2">Cakes</h2>
+              <p>Birthday Cakes</p>
+              <p>Wedding Cakes</p>
+              <p>Etc.</p>
+              <p>P300-P1000</p>
+              <a href="##" class="price-btn">Select</a>
+            </li>
+            <li>
+              <h2 class="works_h2">Cupcakes</h2>
+              <p>Cheesecake Bites</p>
+              <p>Giveaway Cupcakes</p>
+              <p>Etc.</p>
+              <p>P50-P300</p>
+              <a href="##" class="price-btn">Select</a>
+            </li>
+            <li>
+              <h2 class="works_h2">Other</h2>
+              <p>Banana Loaf</p>
+              <p>Brownies</p>
+              <p>Etc.</p>
+              <p>P50-P300</p>
+              <a href="##" class="price-btn">Select</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2 class="sec_mainhead">Subscribe!</h2>
+        <div class="wrapper">
+          <form
+            id="form"
+            action="https://www.freecodecamp.com/email-submit"
+            method="get"
+          >
+            <label for="email">Subscribe to my Newsletter!</label>
+            <br />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email here"
+              required
+            />
+            <br />
+            <input type="submit" id="submit" value="Subscribe" />
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer>
+      Coded By rdlfstmr<br />
+      Images and video are from unsplash.com and youtube.com
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,158 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- links -->
     <script src="https://kit.fontawesome.com/a39ed74a47.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Portfolio</title>
-
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <!-- Logo -->
-        <h1 id="logo">rdlfstmr</h1>
-        
-        <!-- Navigation -->
-        <nav id="nav">
-            <i id="closeBtn" class="fas fa-times fa-2x nav__close"></i>
-            <ul>
-                <li class="nav__list-item"><a href="#banner" class="nav__link">Home</a></li>
-                <li class="nav__list-item"><a href="#folio" class="nav__link">Portfolio</a></li>
-                <li class="nav__list-item"><a href="#about" class="nav__link">About</a></li>
-                <li class="nav__list-item"><a href="#contact" class="nav__link">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="burger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+      <!-- Logo -->
+      <h1 id="logo"><a href="#banner">rdlfstmr</a></h1>
+
+      <!-- Navigation -->
+      <nav id="nav">
+        <i id="closeBtn" class="fas fa-times fa-2x nav__close"></i>
+        <ul>
+          <li class="nav__list-item">
+            <a href="#banner" class="nav__link">Home</a>
+          </li>
+          <li class="nav__list-item">
+            <a href="#folio" class="nav__link">Portfolio</a>
+          </li>
+          <li class="nav__list-item">
+            <a href="#about" class="nav__link">About</a>
+          </li>
+          <li class="nav__list-item">
+            <a href="#contact" class="nav__link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <div id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </header>
-    
+
     <!-- Banner area -->
     <div id="banner" class="banner">
-        <h1>I'm <span>Rodolfo Sta. Maria</span></h1>
-        <h2>Front-End Developer</h2>
-        <a href="##" class="banner__btn">View Resume</a>
-        <p class="banner__down"><span></span></p>
+      <h1>I'm <span>Rodolfo Sta. Maria</span></h1>
+      <h2>Front-End Developer</h2>
+      <a href="##" class="banner__btn">View Resume</a>
+      <p class="banner__down"><span></span></p>
     </div>
     <main>
-        <!-- Portfolio -->
-        <section id="folio" class="folio">
-            <h2 class="section__header">Portfolio</h2>
-            <div class="wrapper">
-                <ul>
-                    <li class="folio__li">
-                        <div class="folio__link">
-                            <img src="./images/conquer.PNG" class="folio__img" alt="Conquer" />
-                            <div class="folio__overlay">
-                                <h2 class="folio__title">Conquer</h2>
-                                <p class="folio__tools">html - css - javascript - responsive</p>
-                                <ul>
-                                    <li><a href="https://github.com/webheadd/Conquer---Practice" class="demo_btn" target="_blank">Github</a></li>
-                                    <li><a href="##" class="demo_btn" target="_blank">Demo</a></li>
-                                </ul> 
-                            </div>
-                        </div>
+      <!-- Portfolio -->
+      <section id="folio" class="folio">
+        <h2 class="section__header">Portfolio</h2>
+        <div class="wrapper">
+          <ul>
+            <li class="folio__li">
+              <div class="folio__link">
+                <img
+                  src="./images/conquer.PNG"
+                  class="folio__img"
+                  alt="Conquer"
+                />
+                <div class="folio__overlay">
+                  <h2 class="folio__title">Conquer</h2>
+                  <p class="folio__tools">
+                    html - css - javascript - responsive
+                  </p>
+                  <ul>
+                    <li>
+                      <a
+                        href="https://github.com/webheadd/Conquer---Practice"
+                        class="demo_btn"
+                        target="_blank"
+                        >Github</a
+                      >
                     </li>
-                    <li class="folio__li">
-                        <div class="folio__link">
-                            <img src="./images/Landing.PNG" class="folio__img" alt="Product Landing Page" />
-                            <div class="folio__overlay">
-                                <h2 class="folio__title">Landing Page</h2>
-                                <p class="folio__tools">html - css - javascript - responsive</p>
-                                <ul>
-                                    <li><a href="https://github.com/webheadd/FCC-Projects/tree/master/Landing%20Page" class="demo_btn" target="_blank">Github</a></li>
-                                    <li><a href="https://s.codepen.io/webheadd/debug/LomEoN/NQkzYqbKoGDA" class="demo_btn" target="_blank">Demo</a></li>
-                                </ul>
-                            </div>
-                       </div>
+                    <li>
+                      <a
+                        href="./Conquer_Recreate/index.html"
+                        class="demo_btn"
+                        target="_blank"
+                        >Demo</a
+                      >
                     </li>
-                    <li class="folio__li">
-                        <div class="folio__link">
-                            <img src="./images/tributepage.PNG" class="folio__img" alt="Tribute Page" />
-                            <div class="folio__overlay">
-                                <h2 class="folio__title">Tribute page</h2>
-                                <p class="folio__tools">html - css - responsive</p>
-                                <ul>
-                                    <li><a href="https://github.com/webheadd/FCC-Projects/tree/master/Tribute%20Page" class="demo_btn" target="_blank">Github</a></li>
-                                    <li><a href="https://s.codepen.io/webheadd/debug/PvRKYG/dXAqBZvaqZWk" class="demo_btn" target="_blank">Demo</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="folio__li">
+              <div class="folio__link">
+                <img
+                  src="./images/Landing.PNG"
+                  class="folio__img"
+                  alt="Product Landing Page"
+                />
+                <div class="folio__overlay">
+                  <h2 class="folio__title">Landing Page</h2>
+                  <p class="folio__tools">
+                    html - css - javascript - responsive
+                  </p>
+                  <ul>
+                    <li>
+                      <a
+                        href="https://github.com/webheadd/FCC-Projects/tree/master/Landing%20Page"
+                        class="demo_btn"
+                        target="_blank"
+                        >Github</a
+                      >
                     </li>
-                    <li class="folio__li">
-                        <div class="folio__link">
-                            <img src="./images/survey_form.PNG" class="folio__img" alt="Survey Form" />
-                            <div class="folio__overlay">
-                                <h2 class="folio__title">Survey Form</h2>
-                                <p class="folio__tools">html - css - responsive</p>
-                                <ul>
-                                    <li><a href="https://github.com/webheadd/FCC-Projects/tree/master/Survey%20Form" class="demo_btn" target="_blank">Github</a></li>
-                                    <li><a href="https://s.codepen.io/webheadd/debug/NVMWmd/mVAbGpZwBpok" class="demo_btn" target="_blank">Demo</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                    <li>
+                      <a
+                        href="./Landing Page/index.html"
+                        class="demo_btn"
+                        target="_blank"
+                        >Demo</a
+                      >
                     </li>
-                </ul>
-            </div>
-        </section>
-        <!-- About -->
-        <section id="about" class="about">
-            <h2 class="section__header">About me</h2>
-            <div class="wrapper">
-                    <p class="about__desc">A front-end developer skilled in creating responsive and cross browser compatible websites.</p>
-            
-                <h2 class="about__skills">Skills</h2>
-                <ul>
-                    <li class="about__li">
-                        <i class="about__img fab fa-html5 fa-5x"></i>
-                        <p class="about__desc">Well organized, semantic and easy to maintain HTML codes.</p>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="folio__li">
+              <div class="folio__link">
+                <img
+                  src="./images/tributepage.PNG"
+                  class="folio__img"
+                  alt="Tribute Page"
+                />
+                <div class="folio__overlay">
+                  <h2 class="folio__title">MovieDB - API</h2>
+                  <p class="folio__tools">html - css - js - api</p>
+                  <ul>
+                    <li>
+                      <a
+                        href="https://github.com/webheadd/FCC-Projects/tree/master/Tribute%20Page"
+                        class="demo_btn"
+                        target="_blank"
+                        >Github</a
+                      >
                     </li>
-                    <li class="about__li">
-                        <i class="about__img fab fa-css3-alt fa-5x"></i>
-                        <p class="about__desc">Responsive websites and cross-browser compatible with CSS.</p>
+                    <li>
+                      <a
+                        href="./API/index.html"
+                        class="demo_btn"
+                        target="_blank"
+                        >Demo</a
+                      >
                     </li>
-                    <li class="about__li">
-                        <i class="about__img fab fa-js-square fa-5x"></i>
-                        <p class="about__desc">Manipulate website objects to add some functionalities.</p>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li class="folio__li">
+              <div class="folio__link">
+                <img
+                  src="./images/survey_form.PNG"
+                  class="folio__img"
+                  alt="Survey Form"
+                />
+                <div class="folio__overlay">
+                  <h2 class="folio__title">Survey Form</h2>
+                  <p class="folio__tools">html - css - responsive</p>
+                  <ul>
+                    <li>
+                      <a
+                        href="https://github.com/webheadd/FCC-Projects/tree/master/Survey%20Form"
+                        class="demo_btn"
+                        target="_blank"
+                        >Github</a
+                      >
                     </li>
-                    <li class="about__li">
-                        <i class="about__img fab fa-sass fa-5x"></i>
-                        <p class="about__desc">CSS enhancement for a much more professional websites.</p>
+                    <li>
+                      <a
+                        href="./Survey Form/index.html"
+                        class="demo_btn"
+                        target="_blank"
+                        >Demo</a
+                      >
                     </li>
-                </ul>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
-        </section>
-        <!-- Contact -->
-        <section id="contact" class="contact">
-            <h2 class="section__header">Contact me</h2>
-            <div class="wrapper">
-            <form>
-                    <input type="text" id="name" class="contact__animate" placeholder="Name" required/>
-                    <br />
-                    <input type="email" id="email" class="contact__animate"  placeholder="E-Mail" required/>
-                    <br />
-                    <textarea id="txtArea" class="contact__animate"  placeholder="Message"></textarea>
-                    <br />
-                    <input type="submit" class="contact__animate"  id="submit"/>
-            </form>
-            </div>
-        </section>
+      </section>
+      <!-- About -->
+      <section id="about" class="about">
+        <h2 class="section__header">About me</h2>
+        <div class="wrapper">
+          <p class="about__desc">
+            A front-end developer skilled in creating responsive and cross
+            browser compatible websites.
+          </p>
+
+          <h2 class="about__skills">Skills</h2>
+          <ul>
+            <li class="about__li">
+              <i class="about__img fab fa-html5 fa-5x"></i>
+              <p class="about__desc">
+                Well organized, semantic and easy to maintain HTML codes.
+              </p>
+            </li>
+            <li class="about__li">
+              <i class="about__img fab fa-css3-alt fa-5x"></i>
+              <p class="about__desc">
+                Responsive websites and cross-browser compatible with CSS.
+              </p>
+            </li>
+            <li class="about__li">
+              <i class="about__img fab fa-js-square fa-5x"></i>
+              <p class="about__desc">
+                Manipulate website objects to add some functionalities.
+              </p>
+            </li>
+            <li class="about__li">
+              <i class="about__img fab fa-sass fa-5x"></i>
+              <p class="about__desc">
+                CSS enhancement for a much more professional websites.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- Contact -->
+      <section id="contact" class="contact">
+        <h2 class="section__header">Contact me</h2>
+        <div class="wrapper">
+          <form>
+            <input
+              type="text"
+              id="name"
+              class="contact__animate"
+              placeholder="Name"
+              required
+            />
+            <br />
+            <input
+              type="email"
+              id="email"
+              class="contact__animate"
+              placeholder="E-Mail"
+              required
+            />
+            <br />
+            <textarea
+              id="txtArea"
+              class="contact__animate"
+              placeholder="Message"
+            ></textarea>
+            <br />
+            <input type="submit" class="contact__animate" id="submit" />
+          </form>
+        </div>
+      </section>
     </main>
     <footer>
-        <ul>
-            <li><a href="##"><i class="fab fa-codepen fa-2x"></i></a></li>
-            <li><a href="##"><i class="fab fa-facebook fa-2x"></i></a></li>
-            <li><a href="##"><i class="fab fa-github fa-2x"></i></a></li>
-            <li><a href="##"><i class="fab fa-google-plus fa-2x"></i></a></li>
-        </ul>
-        <p>Coded by Rodolfo Sta. Maria</p>
+      <ul>
+        <li>
+          <a href="##"><i class="fab fa-codepen fa-2x"></i></a>
+        </li>
+        <li>
+          <a href="##"><i class="fab fa-facebook fa-2x"></i></a>
+        </li>
+        <li>
+          <a href="##"><i class="fab fa-github fa-2x"></i></a>
+        </li>
+        <li>
+          <a href="##"><i class="fab fa-google-plus fa-2x"></i></a>
+        </li>
+      </ul>
+      <p>Coded by Rodolfo Sta. Maria</p>
     </footer>
     <script src="main.js"></script>
-</body>
+  </body>
 </html>

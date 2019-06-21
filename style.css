@@ -105,9 +105,12 @@ header {
 
 header #logo {
   padding: 0.5em;
-  color: #00FFF0;
   cursor: pointer;
   font-size: 1.5em;
+}
+
+header #logo a {
+  color: #00FFF0;
 }
 
 @media screen and (min-width: 769px) and (max-width: 1170px) {
