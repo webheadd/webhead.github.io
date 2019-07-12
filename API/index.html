@@ -4,26 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
+    <title>API</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <title>Document</title>
   </head>
   <body>
-    <h1 id="header">movieDB API</h1>
-    <div class="body">
-      <input type="text" id="search" placeholder="Search movie" />
-      <div class="container">
-        <p id="closeModal">Close</p>
-        <div class="modal"></div>
+    <main id="container">
+      <div id="top_part">
+        <header id="header">Project: <span>ajax</span></header>
       </div>
+      <!-- modal -->
+      <div id="modal-con">
+        <p id="closeModal">Close</p>
+        <div id="modal"></div>
+      </div>
+      <!-- search -->
+      <div id="menubar">
+        <input type="text" placeholder="Search here..." id="searchBox" />
+        <select name="Drop Menu" id="dropMenu">
+          <option value="popular">Popular</option>
+          <option value="top_rated">Top Rated</option>
+          <option value="now_playing">Now Showing</option>
+        </select>
+      </div>
+      <!-- Genre Categories -->
+      <div id="genres">
+        <ul id="genres_con"></ul>
+      </div>
+
+      <!-- render -->
       <ul id="demo"></ul>
-    </div>
-    <div class="pagination">
-      <p id="left">&#x003C;</p>
-      <input type="text" value="1" id="page" />
-      <p id="right">&#x003E;</p>
-    </div>
-    <script src="https://kit.fontawesome.com/a39ed74a47.js"></script>
+
+      <!-- pagination -->
+      <ul id="pagination"></ul>
+    </main>
+
     <script src="main.js"></script>
   </body>
 </html>
