@@ -844,12 +844,19 @@ main #contact .contact__animate {
   padding: 0.3em 0.7em;
   position: relative;
   color: #f8f8f8;
-  border: 1px solid #000;
+  border: 2px solid #222426;
   border-radius: 2px;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 #folio ul .folio__li .folio__links .demo_btn:last-child {
   margin-right: 0;
+}
+
+#folio ul .folio__li .folio__links .demo_btn:hover {
+  background: #f8f8f8;
+  color: #222426;
 }
 
 #about {

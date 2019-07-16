@@ -557,11 +557,15 @@ main {
           padding: 0.3em 0.7em;
           position: relative;
           color: $tertiary;
-          border: 1px solid #000;
+          border: 2px solid $primary;
           border-radius: 2px;
-
+          transition: 0.3s ease-in-out;
           &:last-child {
             margin-right: 0;
+          }
+          &:hover {
+            background: $tertiary;
+            color: $primary;
           }
         }
       }
