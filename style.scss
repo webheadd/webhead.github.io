@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-@import 'mixins';
-
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import "mixins";
 
 //media breakpoints
 $tablet: 549px;
@@ -8,909 +7,766 @@ $laptops: 769px;
 $large: 1171px;
 
 $font-family: Montserrat, sans-serif;
-$color-1: #222426;
-$socialIcon: #00FFF0;
-$color-3: #2F3134;
+$primary: #222426;
+$secondary: #2f3134;
+$tertiary: #f8f8f8;
+$icon: #00fff0;
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 //active class for navigation - make nav slide in
 .slide {
-    transform: translateX(0) !important;
+  transform: translateX(0) !important;
 }
 a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 li {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 html {
-    font-family: $font-family;
+  font-family: $font-family;
 }
 
 //animation class
 .scroll {
-    transform: translateY(0) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 .left {
-    transform: translateX(0) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 section {
-    h1, h2, h3, h4{
-        text-transform: uppercase;
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-transform: uppercase;
+  }
+  .section__header {
+    font-size: 1.7em;
+    transition: 0.3s ease-in-out;
+    @include in;
+    //media breakpoint
+    @include mediaMd {
+      font-size: 1.7em;
     }
-    .section__header {
-        font-size: 1.7em;
-        transition: 0.3s ease-in-out;
-        @include in;
-        //media breakpoint
-        @include mediaMd {
-            font-size: 1.7em;
-        }
-        @include mediaLg {
-            font-size: 1.8em;
-        }
-        @include mediaXl {
-            font-size: 1.9em;
-        }
-        //end of media breakpoint
-    }
-}
-
-
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    min-width: 320px;
-    height: auto;
-    padding: 0.2em 1.2em;
-    background: $color-1;
-    position: fixed;
-    z-index: 10;
     @include mediaLg {
-        border: none;
+      font-size: 1.8em;
     }
     @include mediaXl {
-        border: none;
+      font-size: 1.9em;
     }
-    #logo {
-        padding: 0.5em;
-        cursor: pointer;
-        font-size: 1.5em;
-        a {
-            color: $socialIcon;
-        }
-        @include mediaLg {
-            @include flexCenter;
-            width: 120px;
-            padding: 0.3em 0.5em;
-            margin-left: 5%;
-        }
-        @include mediaXl {
-            @include flexCenter;
-            width: 120px;
-            padding: 0.3em 0.5em;
-            margin-left: 5%;
-        }
-    }
-
-    #nav {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        position: absolute;
-        flex-direction: column;
-        background: $color-1;
-        top: 0;
-        left: 0;
-        transform: translateX(-100%);
-        z-index: 5;
-        transition: all 0.3s ease-in;
-        //media breakpoint
-        @include mediaLg {
-            display: block;
-            position: relative;
-            transform: translateX(0);
-            height: auto;
-            width: 80%;
-            margin: 0 5% 0 0.5em;
-        }
-        @include mediaXl {
-            display: block;
-            position: relative;
-            transform: translateX(0);
-            height: auto;
-            width: 80%;
-            margin: 0 5% 0 0.5em;
-        }
-
-        .nav__close {
-            display: block;
-            width: 40px;
-            height: 35px;
-            color: #fff;
-            cursor: pointer;
-            position: absolute;
-            right: 25px;
-            top: 25px;
-            transition: color 0.8s;
-            animation: pulse 0.7s infinite alternate;
-            @include flexCenter;
-
-            @include mediaLg {
-                display: none;
-                
-            }
-            @include mediaXl {
-                display: none;
-            }
-            &:hover {
-                color: $socialIcon;
-            }
-
-            //pulse animation
-            @keyframes pulse {
-                0% {
-                    transform: scale(1);
-                }
-                100% {
-                    transform: scale(1.2);
-                }
-            }
-        }
-        ul {
-            width: 100%;
-            height: auto;
-            position: relative;
-            margin-top: 6em;
-            @include mediaLg {
-                display: flex;
-                justify-content: flex-end;
-                margin-top: 0;
-                width: 90%;
-                left: 10%;
-            }
-            @include mediaXl {
-                display: flex;
-                justify-content: flex-end;
-                margin-top: 0;
-                width: 90%;
-                left: 10%;
-
-            }
-            .nav__list-item {
-                width: 100%;
-                height: auto;
-                @include mediaLg {
-                    width: 120px;
-                    margin-left: 5%;
-                }
-                @include mediaXl {
-                    width: 120px;
-                    margin-left: 5%;
-                }
-            }
-                .nav__link {
-                    color: #fff;
-                    display: block;
-                    padding: 1.2em 0;
-                    text-align: center;
-                    font-size: 1.1rem;
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    position: relative;
-                    border-bottom: 1px solid rgb(134, 134, 134);
-                    border-top: 1px solid rgb(134, 134, 134);
-                    transition: 0.5s;
-                    z-index: 1;
-                    @include mediaLg {
-                        width: 100%;
-                        font-size: 0.9rem;
-                        border: none;
-                        &:hover {
-                            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8);
-                        }
-                    }
-                    @include mediaXl {
-                        width: 100%;
-                        font-size: 0.9rem;
-                        border: none;
-                        &:hover {
-                            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8);
-                        }
-                    }
-                    &::before {
-                        content: '';
-                        display: block;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        background: rgba(47, 49, 52, 0.7);
-                        width: 100%;
-                        height: 100%;
-                        transform: translateX(-90%);
-                        transition: 0.3s ease-in;
-                        z-index: -1;
-                        @include mediaLg {
-                            background: $socialIcon;
-                            transform: translateX(0) scaleX(0.5);
-                            height: 3px;
-                            bottom: 0;
-                            top: 100%;
-                            width: 100%;
-                            
-                        }
-                        @include mediaXl {
-                            background: $socialIcon;
-                            transform: translateX(0) scaleX(0.5);
-                            height: 3px;
-                            bottom: 0;
-                            top: 100%;
-                            width: 100%;
-                        }
-                    }
-                    &:hover::before {
-                        transform: translateX(0);
-                        @include mediaLg {
-                            transform: scaleX(1);
-                            width: 100%;
-                            
-                            
-                        }
-                        @include mediaXl {
-                            transform: scaleX(1);
-                            width: 100%;
-                        }
-                        
-                    }
-            }
-        }
-    }
-    #burger {
-        display: block;
-        width: 40px;
-        height: 35px;
-        position: relative;
-        cursor: pointer;
-        @include flexCenter;
-        @include mediaLg {
-            display: none;
-        }
-        @include mediaXl {
-            display: none;
-        }
-        span {
-            display: block;
-            width: 70%;
-            height: 2.5px;
-            border-radius: 3px;
-            background: #fff;
-            margin: 0 auto;
-            position: absolute;
-        }
-        span:nth-child(2) {
-            margin-top: 8px;
-        }
-        span:nth-child(3) {
-            margin-top: -8px;
-        }
-    }
+    //end of media breakpoint
+  }
 }
-//main section 
+.wrapper {
+  width: 95%;
+  margin: 0 auto;
+  height: auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  
+  height: auto;
+  padding: 0.2em 1.2em;
+  background: $secondary;
+  position: fixed;
+  z-index: 10;
+
+  #logo {
+    padding: 0.5em;
+    cursor: pointer;
+    font-size: 1.5em;
+    a {
+      color: $icon;
+    }
+    @include mediaLg {
+      @include flexCenter;
+      width: 120px;
+      padding: 0.3em 0.5em;
+      margin-left: 5%;
+    }
+    @include mediaXl {
+      @include flexCenter;
+      width: 120px;
+      padding: 0.3em 0.5em;
+      margin-left: 5%;
+    }
+  }
+
+  #nav {
+    width: 100%;
+    
+    height: 100vh;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    background: $secondary;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    z-index: 5;
+    transition: all 0.3s ease-in;
+    //media breakpoint
+    @include mediaLg {
+      display: block;
+      position: relative;
+      transform: translateX(0);
+      height: auto;
+      width: 80%;
+      margin: 0 5% 0 0.5em;
+    }
+    @include mediaXl {
+      display: block;
+      position: relative;
+      transform: translateX(0);
+      height: auto;
+      width: 80%;
+      margin: 0 5% 0 0.5em;
+    }
+
+    .nav__close {
+      display: block;
+      width: 40px;
+      height: 35px;
+      color: $tertiary;
+      cursor: pointer;
+      position: absolute;
+      right: 25px;
+      top: 25px;
+      transition: color 0.8s;
+      animation: pulse 0.7s infinite alternate;
+      @include flexCenter;
+
+      @include mediaLg {
+        display: none;
+      }
+      @include mediaXl {
+        display: none;
+      }
+      &:hover {
+        color: $icon;
+      }
+
+      //pulse animation
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(1.2);
+        }
+      }
+    }
+    ul {
+      width: 100%;
+      height: auto;
+      position: relative;
+      margin-top: 6em;
+      @include mediaLg {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 0;
+        width: 90%;
+        left: 10%;
+      }
+      @include mediaXl {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 0;
+        width: 90%;
+        left: 10%;
+      }
+      .nav__list-item {
+        width: 100%;
+        height: auto;
+        @include mediaLg {
+          width: 120px;
+          margin-left: 5%;
+        }
+        @include mediaXl {
+          width: 120px;
+          margin-left: 5%;
+        }
+      }
+      .nav__link {
+        color: $tertiary;
+        display: block;
+        padding: 1.2em 0;
+        text-align: center;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        position: relative;
+        border-bottom: 1px solid rgb(134, 134, 134);
+        border-top: 1px solid rgb(134, 134, 134);
+        transition: 0.5s;
+        z-index: 1;
+        @include mediaLg {
+          width: 100%;
+          font-size: 0.9rem;
+          border: none;
+          &:hover {
+            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8);
+          }
+        }
+        @include mediaXl {
+          width: 100%;
+          font-size: 0.9rem;
+          border: none;
+          &:hover {
+            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8);
+          }
+        }
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background: $primary;
+          width: 100%;
+          height: 100%;
+          transform: translateX(-90%);
+          transition: 0.3s ease-in;
+          z-index: -1;
+          @include mediaLg {
+            background: $icon;
+            transform: translateX(0) scaleX(0.5);
+            height: 3px;
+            bottom: 0;
+            top: 100%;
+            width: 100%;
+          }
+          @include mediaXl {
+            background: $icon;
+            transform: translateX(0) scaleX(0.5);
+            height: 3px;
+            bottom: 0;
+            top: 100%;
+            width: 100%;
+          }
+        }
+        &:hover::before {
+          transform: translateX(0);
+          @include mediaLg {
+            transform: scaleX(1);
+            width: 100%;
+          }
+          @include mediaXl {
+            transform: scaleX(1);
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  #burger {
+    display: block;
+    width: 40px;
+    height: 35px;
+    position: relative;
+    cursor: pointer;
+    @include flexCenter;
+    @include mediaLg {
+      display: none;
+    }
+    @include mediaXl {
+      display: none;
+    }
+    span {
+      display: block;
+      width: 70%;
+      height: 2.5px;
+      border-radius: 3px;
+      background: $tertiary;
+      margin: 0 auto;
+      position: absolute;
+    }
+    span:nth-child(2) {
+      margin-top: 8px;
+    }
+    span:nth-child(3) {
+      margin-top: -8px;
+    }
+  }
+}
+//main section
 main {
-    #folio {
-        .folio__li {
-            @include in;
-        }
+  #folio {
+    .folio__li {
+      @include in;
     }
+  }
 
-    #about {
-        .about__desc {
-            @include left;
-        }
-        .about__img {
-            @include in;
-        }
+  #about {
+    .about__desc {
+      @include left;
     }
+    .about__img {
+      @include in;
+    }
+  }
 
-    #contact {
-        .contact__animate {
-            @include in;
-        }
+  #contact {
+    .contact__animate {
+      @include in;
     }
+  }
 }
 // banner animation
 @keyframes scrollAnimation {
-    0% {
-        transform: translateY(-30px);
-        opacity: 0;
-        visibility: hidden;
-    }
-    100% {
-        transform: translateY(0px);
-        opacity: 1;
-        visibility: visible;
-    }
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+    visibility: visible;
+  }
 }
 #banner {
-    min-width: 320px;
-    background: $color-1;
+  background-image: url("/images/banner.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  @include flexCenter;
+  flex-direction: column;
+  color: $tertiary;
+  font-size: 0.6em;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  //media breakpoint
+  @include mediaMd {
+    font-size: 1em;
+  }
+  @include mediaLg {
+    font-size: 1.2em;
+  }
+  @include mediaXl {
+    font-size: 1.5em;
+  }
+  //end of media breakpoint
+  #banner_overlay {
     width: 100%;
-    height: 70vh;
-    @include flexCenter;
-    flex-direction: column;
-    color: #fff;
-    clip-path: polygon(100% 0, 100% 85%, 50% 95%, 0 85%, 0 0);
+    height: 100%;
+    position: absolute;
+    background: rgba($primary, 0.9);
+    
+  }
+  h1 {
+    margin-bottom: 0.7em;
+
+    @include in;
+    animation: scrollAnimation 0.5s 0.5s ease-in forwards;
+    span {
+      color: $icon;
+    }
+  }
+  h2 {
+    margin-bottom: 0.7em;
+    @include in;
+    animation: scrollAnimation 0.5s 1s ease-in forwards;
+  }
+  .banner__btn {
+    display: block;
+    border: 1.5px solid $tertiary;
+    color: $tertiary;
+    font-size: 1em;
+    padding: 0.7em 0.9em;
+    text-transform: uppercase;
     position: relative;
-    margin-bottom: -80px;
+    margin-top: 0.5em;
+    transition: 0.5s;
+    font-weight: bolder;
+    @include in;
+    animation: scrollAnimation 0.5s 1s ease-in forwards;
+    z-index: 1;
     //media breakpoint
     @include mediaMd {
-        height: 75vh;
+    font-size: 0.8em;
     }
     @include mediaLg {
-        height: 80vh;
+    font-size: 0.7em;
     }
     @include mediaXl {
-        height: 100vh;
+    font-size: 0.6em;
     }
     //end of media breakpoint
-    h1 {
-        margin-bottom: 0.5em;
-        font-size: 1.5em;
-        @include in;
-        animation: scrollAnimation 0.5s 0.5s ease-in forwards;
-        
-        //media breakpoint
-        @include mediaMd {
-            font-size: 2em;
-        }
-        @include mediaLg {
-            font-size: 2.5em;
-        }
-        @include mediaXl {
-            font-size: 3em;
-        }
-        //end of media breakpoint
-        span {
-            color: $socialIcon;
-        }
-    }
-    h2 {
-        margin-bottom: 0.5em;
-        font-size: 1.3em;
-        @include in;
-        animation: scrollAnimation 0.5s 1s ease-in forwards;
-        //media breakpoint
-        @include mediaMd {
-            font-size: 1.6em;
-        }
-        @include mediaLg {
-            font-size: 1.8em;
-        }
-        @include mediaXl {
-            font-size: 2em;
-        }
-        //end of media breakpoint
-    }
-    .banner__btn {
-        display: block;
-        border: 1.5px solid #fff;
-        color: #fff;
-        font-size: 0.8em;
-        padding: 0.7em 0.9em;
-        text-transform: uppercase;
-        position: relative;
-        margin-top: 0.5em;
-        transition: 0.5s;
-        font-weight: bolder;
-        @include in;
-        animation: scrollAnimation 0.5s 1s ease-in forwards;
-        z-index: 1;
-        //media breakpoint
-        @include mediaMd {
-            font-size: 1em;
-        }
-        @include mediaLg {
-            font-size: 1.1em;
-        }
-        @include mediaXl {
-            font-size: 1.2em;
-        }
-        //end of media breakpoint
-        
-        &::before {
-            content: '';
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 255, 240, 0.9);
-                z-index: -1;
-                transform: scaleX(0);
-                transition: 0.3s;
-            }
-            &:hover::before {
-                transform: scaleX(1);
-            }
-            &:hover {
-                color: $color-1;
-            }
-    }
-    .banner__down {
-        display: block;
-        width: 15px;
-        height: 35px;
-        border: 1px solid white;
-        position: absolute;
-        border-radius: 7.5px;
-        bottom: 40px;
-        
-        span {
-            display: block;
-            width: 10px;
-            height: 10px;
-            background: $socialIcon;
-            border-radius: 50%;
-            margin: 0 auto;
-            position: relative;
 
-            animation: upDown 1s ease-in-out infinite alternate;
-            
-        }
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 255, 240, 0.9);
+      z-index: -1;
+      transform: scaleX(0);
+      transition: 0.3s;
     }
+    &:hover::before {
+      transform: scaleX(1);
+    }
+    &:hover {
+      color: $primary;
+    }
+  }
+  .banner__down {
+    display: block;
+    width: 15px;
+    height: 35px;
+    border: 1px solid white;
+    position: absolute;
+    border-radius: 7.5px;
+    bottom: 40px;
+
+    span {
+      display: block;
+      width: 10px;
+      height: 10px;
+      background: $icon;
+      border-radius: 50%;
+      margin: 0 auto;
+      position: relative;
+
+      animation: upDown 1s ease-in-out infinite alternate;
+    }
+  }
 }
 
 //updown animation
 
 @keyframes upDown {
-    0% {
-        top: 0;
-    }
-    100% {
-        top: 70%;
-    }
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 70%;
+  }
 }
 
 // Portoflio section
 
 #folio {
+  width: 100%;
+  height: auto;
+  
+  border: 1px solid transparent;
+
+  .section__header {
+    margin: 1.5em 0;
+    text-align: center;
+    color: #000;
+  }
+  ul {
     width: 100%;
     height: auto;
-    min-width: 320px;
-    margin-bottom: -2em;
-    border: 1px solid transparent;
-    padding-bottom: 2em;
-    .section__header {
-        margin-top: 3em;
-        text-align: center;
-        color: #000;
-       
+    margin: 1.5em auto;
+    @include flexCenter;
+    flex-direction: column;
+
+    //media breakpoint
+    @include mediaLg {
+      flex-direction: row;
+      flex-wrap: wrap;
     }
-    ul {
+    @include mediaXl {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    //end of media breakpoint
+
+    .folio__li {
+      width: 90%;
+      min-width: 280px;
+      max-width: 350px;
+      height: auto;
+      display: block;
+      border: 1px solid rgb(221, 221, 221);
+      position: relative;
+      margin: 0 2% 2rem 2%;
+      box-shadow: 0px 0px 3px 1px #ccc;
+      overflow: hidden;
+      text-align: center;
+      border-radius: 5px;
+
+      .folio__img {
         width: 100%;
         height: auto;
-        margin: 1.5em 0 0 0;
+        transition: 0.3s;
+      }
+      .folio__title {
+        font-size: 1.2em;
+        margin: 0.5rem 0;
         //media breakpoint
+        @include mediaMd {
+          font-size: 1.2em;
+        }
         @include mediaLg {
-            display: flex;
-            flex-wrap: wrap;
+          font-size: 1.2em;
         }
         @include mediaXl {
-            display: flex;
-            flex-wrap: wrap;
+          font-size: 1.2em;
         }
         //end of media breakpoint
-        .folio__li {
-            width: 100%;
-            height: auto;
-            display: block;
-            font-size: 0;
-            position: relative;
-            overflow: hidden;
-            //media breakpoint
-            @include mediaLg {
-                width: 50%;
-            }
-            @include mediaXl {
-                width: 50%;
-            }
-            //end of media breakpoint
-            .folio__link {
-                width: 100%;
-                height: 100%;
-                display: block;
+      }
+      .folio__details {
+        width: 95%;
+        height: auto;
+        margin: 0.5rem auto 1rem auto;
+        font-size: 0.9em;
+      }
 
-                .folio__img {
-                    width: 100%;
-                    height: auto;
-                    background: $color-1;
-                    transition: 0.3s;
-                }
-                
-                .folio__overlay {
-                    font-size: 16px !important;
-                    width: 100%;
-                    height: 100%;
-                    @include flexCenter;
-                    flex-direction: column;
-                    position: absolute;
-                    z-index: 2;
-                    top: 0;
-                    left: 0;
-                    color: #fff;
-                    background: rgba(29, 29, 29, 0.6);
-                    
-                    transition: 0.2s;
+      .folio__links {
+        width: 100%;
+        height: auto;
+        padding: 1rem 0;
+        border-top: 1px solid rgb(240, 240, 240);
+        @include flexCenter;
 
-                    
-                    //media breakpoint
-                    @include mediaLg {
-                        transform: translateY(100%);
-                    }
-                    @include mediaXl {
-                        transform: translateY(100%);
-                    }
-                    //end of media breakpoint
+        .demo_btn {
+          @include flexCenter;
+          width: 65px;
+          font-size: 1em;
+          height: auto;
+          margin-right: 3em;
+          background: $primary;
+          text-align: center;
+          padding: 0.3em 0.7em;
+          position: relative;
+          color: $tertiary;
+          border: 1px solid #000;
+          border-radius: 2px;
 
-                    .folio__title {
-                        font-size: 1.5em;
-                        color: #fff;
-                        letter-spacing: 0.1em;
-                        margin-bottom: 1rem;
-                        //media breakpoint
-                        @include mediaMd {
-                        font-size: 1.7em;
-                        }
-                        @include mediaLg {
-                        font-size: 1.8em;
-                        }
-                        @include mediaXl {
-                        font-size: 1.9em;
-                        }
-                        //end of media breakpoint
-                    }
-                    ul {
-                        width: 100%;
-                        height: auto;
-                        @include flexCenter;
-                        li {
-                            width: 80px;
-                            margin: 0 2em;
-                            font-weight: bold;
-                            position: relative;
-                            
-                            
-                            &:nth-child(1) > .demo_btn {
-                                border: 1.5px solid #fff;
-
-                                
-                            }
-                            &:nth-child(2) > .demo_btn {
-                                border: 1.5px solid $socialIcon;
-                                
-                            }
-                            &::before {
-                                content: '';
-                                display: block;
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                width: 100%;
-                                height: 100%;
-                                background: rgb(0, 0, 0);
-                                z-index: -1;
-                                transform: scaleX(0);
-                                transition: 0.3s;
-                            }
-                            &:hover::before {
-                                transform: scaleX(1);
-                            }
-
-                            .demo_btn {
-                                display: block;
-                                width: 100%;
-                                text-align: center;
-                                height: auto;
-                                padding: 0.3em;
-                                position: relative;
-                                overflow: hidden;
-                                color: #fff;
-                               
-                                
-                               
-                                
-                            }
-                        }
-                    }
-                    
-                }
-                &:hover > .folio__img {
-                    transform: scale(1.05);
-                }
-                //media breakpoint
-                @include mediaLg {
-                    &:hover > .folio__overlay {
-                        transform: translateY(0);
-                    }
-                }
-                @include mediaXl {
-                    &:hover > .folio__overlay {
-                        transform: translateY(0);
-                    }
-                }
-                //end of media breakpoint
-            }
-            
-             
+          &:last-child {
+            margin-right: 0;
+          }
         }
+      }
     }
+  }
 }
 
 // about section
 #about {
-    width: 100%;
-    min-width: 320px;
-    height: auto;
-    margin-bottom: -60px;
-    z-index: 5;
-    border: 1px solid transparent;
-    background: #fff;
-    clip-path: polygon(100% 0, 100% 95%, 50% 100%, 0 95%, 0 0);
+  width: 100%;
+  
+  height: auto;
+  z-index: 5;
+  background: $tertiary;
+  border: 1px solid transparent;
 
+  .section__header {
+    text-align: center;
+    margin: 1.5em 0;
+  }
+  .about__desc {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    text-align: center;
+    margin: 0 auto;
+    //media breakpoint
     @include mediaMd {
-        margin-bottom: -70px;
-        clip-path: polygon(100% 0, 100% 93%, 50% 100%, 0 93%, 0 0);
+      max-width: 400px;
     }
     @include mediaLg {
-        margin-bottom: -70px;
-        clip-path: polygon(100% 0, 100% 91%, 50% 100%, 0 91%, 0 0);
+      max-width: 450px;
     }
     @include mediaXl {
-        margin-bottom: -70px;
-        clip-path: polygon(100% 0, 100% 89%, 50% 100%, 0 89%, 0 0);
+      max-width: 500px;
     }
     //end of media breakpoint
-    .section__header {
-        text-align: center;
-        margin: 3em 0 1.5em 0;
+  }
+  .about__skills {
+    text-align: center;
+    margin: 1.5em 0;
+  }
+  ul {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    //media breakpoint
+    @include mediaMd {
+      flex-direction: row;
+      flex-wrap: wrap;
     }
-    .about__desc {
+    @include mediaLg {
+      flex-direction: row;
+    }
+    @include mediaXl {
+      flex-direction: row;
+    }
+    //end of media breakpoint
+
+    .about__li {
+      width: 50%;
+      height: auto;
+      margin: 0 auto 1.5em auto;
+      text-align: center;
+
+      .about__img {
         display: block;
+        margin: 0 auto 1rem auto;
+        color: $primary;
+      }
+      .about__desc {
         width: 100%;
-        max-width: 280px;
+        max-width: 200px;
         height: auto;
-        text-align: center;
-        margin: 0 auto 2.5em auto;
-        //media breakpoint
-        @include mediaMd {
-            max-width: 400px;
-        }
-        @include mediaLg {
-            max-width: 450px;
-        }
-        @include mediaXl {
-            max-width: 500px;
-        }
-        //end of media breakpoint
-    }
-    .about__skills {
-        text-align: center;
-        margin-bottom: 1em;
-    }
-    .wrapper {
-        width: 95%;
-        margin: 0 auto;
-        height: auto;
-    }
-    ul {
-        width: 100%;
-        height: auto;
-        margin-bottom: 7em;
+        margin: 0 auto 0.5rem auto;
+      }
 
-        //media breakpoint
-        @include mediaMd {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        @include mediaLg {
-            display: flex;
-        }
-        @include mediaXl {
-            display: flex;
-        }
-        //end of media breakpoint
-
-        .about__li {
-            width: 50%;
-            height: auto;
-            margin: 1.5em auto;
-            text-align: center;
-
-            .about__img {
-                display: block;
-                margin: 0 auto 1rem auto;
-                color: $color-1;
-            }
-            .about__imgDesc {
-                width: 85%;
-                margin: 0 auto 0.5rem auto;
-                 //media breakpoint
-                @include mediaMd {
-                    width: 80%;
-                }
-                @include mediaLg {
-                    width: 75%;
-                }
-                @include mediaXl {
-                    width: 70%;
-                }
-                //end of media breakpoint
-            }
-
-            &:nth-child(1):hover > .about__img {
-                color: #E25223;
-            }
-            &:nth-child(2):hover > .about__img {
-                color: #1472B6;
-            }
-            &:nth-child(3):hover > .about__img {
-                color: #DEA02B;
-            }
-            &:nth-child(4):hover > .about__img {
-                color: #CA6698;
-            }
-        }
+      &:nth-child(1):hover > .about__img {
+        color: #e25223;
+      }
+      &:nth-child(2):hover > .about__img {
+        color: #1472b6;
+      }
+      &:nth-child(3):hover > .about__img {
+        color: #dea02b;
+      }
+      &:nth-child(4):hover > .about__img {
+        color: #ca6698;
+      }
     }
+  }
 }
 
 // contact section
 
 #contact {
-    width: 100%;
-    min-width: 320px;
+  width: 100%;
+  
+  height: auto;
+  background: $primary;
+  border: 1px solid transparent;
+  .section__header {
+    color: $tertiary;
+    margin: 1em 0;
+    text-align: center;
+  }
+  .contact__con {
+    width: 95%;
+    min-width: 300px;
     height: auto;
-    background: $color-1;
-    border: 1px solid transparent;
+    margin: 1.5em auto;
+    color: $tertiary;
     
-    .section__header {
-        color: #fff;
-        margin: 3em 0 0.5em 0;
-        text-align: center;
+    //media breakpoint
+    @include mediaLg {
+      max-width: 900px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .wrapper {
-        width: 90%;
-        max-width: 350px;
-        height: auto;
-        margin: 0 auto;
-        //media breakpoint
-        @include mediaMd {
-            max-width: 450px;
-        }
-        @include mediaLg {
-            max-width: 550px;
-        }
-        @include mediaXl {
-            max-width: 650px;
-        }
-        //end of media breakpoint
-        form {
-            width: 100%;
-            height: auto;
-        }
-        #name, #email, #txtArea {
-            width: 98%;
-            margin: 0.3em auto;
-            padding: 0.5em;
-            border: none;
-            background: rgba(255, 255, 255, 0.945);
-            //media breakpoint
-            @include mediaMd {
-                margin: 0.4em auto;
-            }
-            @include mediaLg {
-                margin: 0.5em auto;
-            }
-            @include mediaXl {
-                margin: 0.6em auto;
-            }
-            //end of media breakpoint
-        }
-        #txtArea {
-            height: 100px;
-            //media breakpoint
-            @include mediaMd {
-                height: 150px;
-            }
-            @include mediaLg {
-                height: 200px;
-            }
-            @include mediaXl {
-                height: 250px;
-            }
-            //end of media breakpoint
-        }
-        #submit {
-            display: block;
-            padding: 0.3em 0.5em;
-            margin-bottom: 1em;
-            font-size: 1em;
-            border: none;
-            background: #fff;
-            cursor: pointer;
-            transition: 0.3s;
-            &:hover {
-                background: $color-3;
-                color: $socialIcon;
-                border: 1px solid #fff;
-            }
+    @include mediaXl {
+      max-width: 1100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    //end of media breakpoint
 
-            //media breakpoint
-            @include mediaMd {
-                padding: 0.5em 0.7em;
-            }
-            @include mediaLg {
-                padding: 0.6em 0.8em;
-            }
-            @include mediaXl {
-                padding: 0.6em 0.8em;
-            }
-            //end of media breakpoint
-        }
+    .contact__list {
+      width: 95%;
+      height: auto;
+      margin: 2em auto;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+
+      //media breakpoint
+      @include mediaLg {
+        width: 33%;
+      }
+      @include mediaXl {
+        width: 33%;
+      }
+      //end of media breakpoint
+
+      .fas,
+      p {
+        margin-bottom: 0.5em;
+      }
+      .fas {
+        width: 50px;
+        height: auto;
+      }
+      p {
+        display: block;
+        width: 90%;
+        font-size: 0.95em;
+        height: auto;
+      }
     }
+  }
 }
 
 // footer
 footer {
+  width: 100%;
+  
+  height: 100px;
+  background: $secondary;
+  @include flexCenter;
+  flex-direction: column;
+  ul {
     width: 100%;
-    min-width: 320px;
-    height: 100px;
-    background: $color-3;
-    @include flexCenter;
-    flex-direction: column;
-    ul {
+    height: auto;
+    margin-bottom: 0.5em;
+    text-align: center;
+  }
+  li {
+    width: 40px;
+    height: auto;
+    display: inline-block;
+    text-align: center;
+    a {
+      width: 100%;
+      height: 100%;
+
+      i {
         width: 100%;
-        height: auto;
-        margin-bottom: 0.5em;
-        text-align: center;
-    }
-    li {
-        width: 40px;
-        height: auto;
-        display: inline-block;
-        text-align: center;
-        a {
-            width: 100%;
-            height: 100%;
-            
-            i {
-                width: 100%;
-                height: 100%;
-                color: $socialIcon;
-                transition: 0.5s;
-            }
+        height: 100%;
+        color: $icon;
+        transition: 0.5s;
+      }
 
-            &:hover > i {
-                color: #fff;
-            }
-        }
-        
+      &:hover > i {
+        color: $tertiary;
+      }
     }
-    p {
-        color: #fff;
-    }
+  }
+  p {
+    color: $tertiary;
+  }
 }
-
