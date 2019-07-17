@@ -4,8 +4,6 @@ let search = document.getElementById("searchBox");
 let modalContainer = document.getElementById("modal-con");
 let modalContent = document.getElementById("modal");
 let closeBtn = document.getElementById("closeModal");
-let genCon = document.getElementById("genres_con");
-let genList = document.getElementsByClassName("genre_li");
 let pagination = document.getElementById("pagination");
 
 let output = "";
@@ -18,6 +16,7 @@ let loader = document.getElementById("loader");
 
 //Genre object
 const Genre = [
+  { id: 0, name: "Show All" },
   { id: 28, name: "Action" },
   { id: 12, name: "Adventure" },
   { id: 16, name: "Animation" },
@@ -46,14 +45,19 @@ let baseImageUrl = "https://image.tmdb.org/t/p/original";
 let choices = menu.options[menu.selectedIndex].value;
 
 //create genre buttons
+let genCon = document.getElementById("genres_con");
 Genre.forEach(el => {
   genre_output += `<li class="genre_li" data-id="${el.id}">${el.name}</li>`;
   genCon.innerHTML = genre_output;
 });
+let openGenre = document.getElementById("genreBtn");
 
+openGenre.addEventListener("click", () => {
+  genCon.classList.toggle("openGenreList");
+});
 //Create Movie cards - Movie card template
 function createItems(poster, vote, id, title) {
-  let imagePoster = `https://image.tmdb.org/t/p/original${poster}`;
+  let imagePoster = `https://image.tmdb.org/t/p/w500${poster}`;
   output += `<li class="list-item" data-attribute="${id}">
                 <img src="${imagePoster}" alt="${title}" class="poster">
                 <p class="vote">${vote}</p>
@@ -92,21 +96,19 @@ window.onload = () => {
   loadData(uri);
 };
 /* -------SEARCH BOX------- */
-//search.addEventListener("keyup", searchMovie);
-//function searchMovie(e) {
-//  let text = e.target.value;
-//  let uri;
-//  if (text === "") {
-//    uri = `${baseUrl}movie/${choices}?api_key=${api_key}&language=en-US&page=1&region=us`;
-//    document.getElementById("page").value = 1;
-//  } else {
-//    uri = `${baseUrl}search/movie?api_key=${api_key}&language=en-US&query=${text}&page=1&include_adult=false`;
-//    console.log(uri);
-//    document.getElementById("page").value = 1;
-//  }
-//  output = "";
-//  loadData(uri);
-//}
+let searchMovie = e => {
+  let text = e.target.value;
+  let uri;
+  if (text === "") {
+    uri = `${baseUrl}movie/${choices}?api_key=${api_key}&language=en-US&page=`;
+  } else {
+    uri = `${baseUrl}search/movie?api_key=${api_key}&language=en-US&query=${text}&page=`;
+    console.log(uri);
+  }
+  output = "";
+  loadData(uri);
+};
+search.addEventListener("keyup", searchMovie);
 
 //drop down menu
 menu.addEventListener("change", e => {
@@ -122,7 +124,7 @@ menu.addEventListener("change", e => {
 let loadData = url => {
   let arr = [];
   let arr1 = new Array();
-  for (let x = 1; x < 16; x++) {
+  for (let x = 1; x < 11; x++) {
     let uri = `${url}${x}`;
     arr.push(fetch(uri).then(res => res.json()));
   }
@@ -133,7 +135,7 @@ let loadData = url => {
     let newArray = Array.prototype.concat.apply([], arr1);
     //pagination declaration --START
     let currentIndex = 0;
-    let indexPerPage = 24;
+    let indexPerPage = 20;
     let pageCount = Math.ceil(newArray.length / indexPerPage);
     let newArr = newArray.slice(currentIndex, indexPerPage);
     //--END
@@ -157,31 +159,71 @@ let loadData = url => {
     pageOnClick(newArray, indexPerPage);
 
     //add onclick event in genre buttons
-    Array.from(genList).forEach(elem => {
+    let genList = document.querySelectorAll(".genre_li");
+    genList[0].classList.add("active-li");
+    genList.forEach(elem => {
       elem.addEventListener("click", e => {
+        let activeGenre = document.querySelector(".active-li");
         let x = parseInt(e.currentTarget.getAttribute("data-id"));
+        if (e.currentTarget.className === "genre_li active-li") {
+          return;
+        } else {
+          activeGenre.classList.remove("active-li");
+          e.currentTarget.classList.add("active-li");
+          if (x === 0) {
+            output = "";
+            newArr.forEach(movie => {
+              createItems(
+                movie.poster_path,
+                movie.vote_average,
+                movie.id,
+                movie.title
+              );
+              setTimeout(() => {
+                for (let i = 0; i < li.length; i++) {
+                  li[i].classList.add("animate");
+                }
+              }, 300);
+            });
+            iterateListItem(li);
 
-        //Filter data by genre
-        let dataRes = newArray.filter(val => {
-          return val.genre_ids.indexOf(x) !== -1;
-        });
-        let genreResSliced = dataRes.slice(currentIndex, indexPerPage);
-        let pageCounter = Math.ceil(dataRes.length / indexPerPage);
-        output = "";
-        genreResSliced.forEach(movie => {
-          createItems(movie.poster_path, movie.vote_average, movie.id);
-          setTimeout(() => {
-            for (let i = 0; i < li.length; i++) {
-              li[i].classList.add("animate");
-            }
-          }, 100);
-        });
-        iterateListItem(li);
+            //create pagination
+            pageOutPut = "";
+            createPagination(pageCount);
 
-        //create pagination
-        pageOutPut = "";
-        createPagination(pageCounter);
-        pageOnClick(dataRes, indexPerPage);
+            //pagination event
+            pageOnClick(newArray, indexPerPage);
+
+            //close Genre list
+            genCon.classList.remove("openGenreList");
+          } else {
+            //Filter data by genre
+            let dataRes = newArray.filter(val => {
+              return val.genre_ids.indexOf(x) !== -1;
+            });
+            let genreResSliced = dataRes.slice(currentIndex, indexPerPage);
+            let pageCounter = Math.ceil(dataRes.length / indexPerPage);
+            output = "";
+            genreResSliced.forEach(movie => {
+              createItems(movie.poster_path, movie.vote_average, movie.id);
+              setTimeout(() => {
+                for (let i = 0; i < li.length; i++) {
+                  li[i].classList.add("animate");
+                }
+              }, 100);
+            });
+
+            iterateListItem(li);
+
+            //create pagination
+            pageOutPut = "";
+            createPagination(pageCounter);
+            pageOnClick(dataRes, indexPerPage);
+
+            //close Genre list
+            genCon.classList.remove("openGenreList");
+          }
+        }
       });
     });
   });
@@ -213,7 +255,6 @@ let createPagination = totalPage => {
 //pagination event
 let pageOnClick = (arr, itemsPage) => {
   let page = document.querySelectorAll(".pageNum");
-  console.log("qwe");
   //add initial active class to first page
   page[0].classList.add("active");
   page.forEach(elem => {
