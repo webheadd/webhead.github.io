@@ -79,7 +79,7 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  
+
   height: auto;
   padding: 0.2em 1.2em;
   background: $secondary;
@@ -109,7 +109,7 @@ header {
 
   #nav {
     width: 100%;
-    
+
     height: 100vh;
     display: flex;
     position: absolute;
@@ -213,7 +213,7 @@ header {
         position: relative;
         border-bottom: 1px solid rgb(134, 134, 134);
         border-top: 1px solid rgb(134, 134, 134);
-        transition: 0.5s;
+        transition: 0.3s ease-in-out;
         z-index: 1;
         @include mediaLg {
           width: 100%;
@@ -341,7 +341,7 @@ main {
   }
 }
 #banner {
-  background-image: url("/images/banner.jpg");
+  background-image: url("images/banner.jpg");
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
@@ -371,7 +371,6 @@ main {
     height: 100%;
     position: absolute;
     background: rgba($primary, 0.9);
-    
   }
   h1 {
     margin-bottom: 0.7em;
@@ -396,20 +395,20 @@ main {
     text-transform: uppercase;
     position: relative;
     margin-top: 0.5em;
-    transition: 0.5s;
+    transition: 0.3s ease-in-out;
     font-weight: bolder;
     @include in;
     animation: scrollAnimation 0.5s 1s ease-in forwards;
     z-index: 1;
     //media breakpoint
     @include mediaMd {
-    font-size: 0.8em;
+      font-size: 0.8em;
     }
     @include mediaLg {
-    font-size: 0.7em;
+      font-size: 0.7em;
     }
     @include mediaXl {
-    font-size: 0.6em;
+      font-size: 0.6em;
     }
     //end of media breakpoint
 
@@ -424,7 +423,7 @@ main {
       background: rgba(0, 255, 240, 0.9);
       z-index: -1;
       transform: scaleX(0);
-      transition: 0.3s;
+      transition: 0.3s ease-in-out;
     }
     &:hover::before {
       transform: scaleX(1);
@@ -433,46 +432,13 @@ main {
       color: $primary;
     }
   }
-  .banner__down {
-    display: block;
-    width: 15px;
-    height: 35px;
-    border: 1px solid white;
-    position: absolute;
-    border-radius: 7.5px;
-    bottom: 40px;
-
-    span {
-      display: block;
-      width: 10px;
-      height: 10px;
-      background: $icon;
-      border-radius: 50%;
-      margin: 0 auto;
-      position: relative;
-
-      animation: upDown 1s ease-in-out infinite alternate;
-    }
-  }
 }
-
-//updown animation
-
-@keyframes upDown {
-  0% {
-    top: 0;
-  }
-  100% {
-    top: 70%;
-  }
-}
-
 // Portoflio section
 
 #folio {
   width: 100%;
   height: auto;
-  
+
   border: 1px solid transparent;
 
   .section__header {
@@ -515,7 +481,7 @@ main {
       .folio__img {
         width: 100%;
         height: auto;
-        transition: 0.3s;
+        transition: 0.3s ease-in-out;
       }
       .folio__title {
         font-size: 1.2em;
@@ -576,7 +542,7 @@ main {
 // about section
 #about {
   width: 100%;
-  
+
   height: auto;
   z-index: 5;
   background: $tertiary;
@@ -668,7 +634,7 @@ main {
 
 #contact {
   width: 100%;
-  
+
   height: auto;
   background: $primary;
   border: 1px solid transparent;
@@ -683,7 +649,7 @@ main {
     height: auto;
     margin: 1.5em auto;
     color: $tertiary;
-    
+
     //media breakpoint
     @include mediaLg {
       max-width: 900px;
@@ -716,7 +682,6 @@ main {
         width: 33%;
       }
       //end of media breakpoint
-
       .fas,
       p {
         margin-bottom: 0.5em;
@@ -724,12 +689,16 @@ main {
       .fas {
         width: 50px;
         height: auto;
+        transition: 0.3s ease-in-out;
       }
       p {
         display: block;
         width: 90%;
         font-size: 0.95em;
         height: auto;
+      }
+      &:hover > .fas {
+        color: $icon;
       }
     }
   }
@@ -738,7 +707,7 @@ main {
 // footer
 footer {
   width: 100%;
-  
+
   height: 100px;
   background: $secondary;
   @include flexCenter;
@@ -762,7 +731,7 @@ footer {
         width: 100%;
         height: 100%;
         color: $icon;
-        transition: 0.5s;
+        transition: 0.3s ease-in-out;
       }
 
       &:hover > i {
