@@ -1,7 +1,7 @@
 //media breakpoints
 $tablet: 549px;
-$laptops: 769px;
-$large: 1171px;
+$laptops: 821px;
+$large: 1277px;
 
 @mixin flexCenter {
     display: flex;
@@ -26,14 +26,14 @@ $large: 1171px;
 
 //tablet
 @mixin mediaMd {
-    @media screen and (min-width: $tablet) and (max-width: $laptops - 1) {
+    @media screen and (min-width: $tablet) and (max-width: $laptops) {
         @content;
     }
 }
 
 // desktop & laptop
 @mixin mediaLg {
-    @media screen and (min-width: $laptops) and (max-width: $large - 1) {
+    @media screen and (min-width: $laptops) and (max-width: $large) {
         @content;
     }
 }

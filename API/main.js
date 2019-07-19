@@ -113,8 +113,11 @@ search.addEventListener("keyup", searchMovie);
 //drop down menu
 menu.addEventListener("change", e => {
   choices = e.target.value;
-  //  document.getElementById("page").value = 1;
-  //  search.value = "";
+  let activeGenre = document.querySelector(".active-li");
+  let genList = document.querySelectorAll(".genre_li");
+  activeGenre.classList.remove("active-li");
+  genList[0].classList.add("active-li");
+  search.value = "";
   let link = `${baseUrl}movie/${choices}?api_key=${api_key}&language=en-US&page=`;
   output = "";
   loadData(link);
@@ -132,6 +135,7 @@ let loadData = url => {
     data.forEach(res => {
       arr1.push(res.results);
     });
+
     let newArray = Array.prototype.concat.apply([], arr1);
     //pagination declaration --START
     let currentIndex = 0;
@@ -149,6 +153,7 @@ let loadData = url => {
         }
       }, 300);
     });
+
     iterateListItem(li);
 
     //create pagination
@@ -165,65 +170,62 @@ let loadData = url => {
       elem.addEventListener("click", e => {
         let activeGenre = document.querySelector(".active-li");
         let x = parseInt(e.currentTarget.getAttribute("data-id"));
-        if (e.currentTarget.className === "genre_li active-li") {
-          return;
-        } else {
+        if (e.currentTarget.className !== "genre_li active-li") {
           activeGenre.classList.remove("active-li");
           e.currentTarget.classList.add("active-li");
-          if (x === 0) {
-            output = "";
-            newArr.forEach(movie => {
-              createItems(
-                movie.poster_path,
-                movie.vote_average,
-                movie.id,
-                movie.title
-              );
-              setTimeout(() => {
-                for (let i = 0; i < li.length; i++) {
-                  li[i].classList.add("animate");
-                }
-              }, 300);
-            });
-            iterateListItem(li);
-
-            //create pagination
-            pageOutPut = "";
-            createPagination(pageCount);
-
-            //pagination event
-            pageOnClick(newArray, indexPerPage);
-
-            //close Genre list
-            genCon.classList.remove("openGenreList");
-          } else {
-            //Filter data by genre
-            let dataRes = newArray.filter(val => {
-              return val.genre_ids.indexOf(x) !== -1;
-            });
-            let genreResSliced = dataRes.slice(currentIndex, indexPerPage);
-            let pageCounter = Math.ceil(dataRes.length / indexPerPage);
-            output = "";
-            genreResSliced.forEach(movie => {
-              createItems(movie.poster_path, movie.vote_average, movie.id);
-              setTimeout(() => {
-                for (let i = 0; i < li.length; i++) {
-                  li[i].classList.add("animate");
-                }
-              }, 100);
-            });
-
-            iterateListItem(li);
-
-            //create pagination
-            pageOutPut = "";
-            createPagination(pageCounter);
-            pageOnClick(dataRes, indexPerPage);
-
-            //close Genre list
-            genCon.classList.remove("openGenreList");
-          }
         }
+        if (x === 0) {
+          output = "";
+          newArr.forEach(movie => {
+            createItems(
+              movie.poster_path,
+              movie.vote_average,
+              movie.id,
+              movie.title
+            );
+            setTimeout(() => {
+              for (let i = 0; i < li.length; i++) {
+                li[i].classList.add("animate");
+              }
+            }, 300);
+          });
+          iterateListItem(li);
+
+          //create pagination
+          pageOutPut = "";
+          createPagination(pageCount);
+
+          //pagination event
+          pageOnClick(newArray, indexPerPage);
+
+          //close Genre list
+          genCon.classList.remove("openGenreList");
+        }
+        //Filter data by genre
+        let dataRes = newArray.filter(val => {
+          return val.genre_ids.indexOf(x) !== -1;
+        });
+        let genreResSliced = dataRes.slice(currentIndex, indexPerPage);
+        let pageCounter = Math.ceil(dataRes.length / indexPerPage);
+        output = "";
+        genreResSliced.forEach(movie => {
+          createItems(movie.poster_path, movie.vote_average, movie.id);
+          setTimeout(() => {
+            for (let i = 0; i < li.length; i++) {
+              li[i].classList.add("animate");
+            }
+          }, 100);
+        });
+
+        iterateListItem(li);
+
+        //create pagination
+        pageOutPut = "";
+        createPagination(pageCounter);
+        pageOnClick(dataRes, indexPerPage);
+
+        //close Genre list
+        genCon.classList.remove("openGenreList");
       });
     });
   });

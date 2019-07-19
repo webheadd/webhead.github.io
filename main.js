@@ -105,3 +105,5 @@ window.onload = () => {
     }
   }
 };
+
+console.log(document.getElementById("folio").clientWidth);
