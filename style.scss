@@ -444,7 +444,7 @@ main {
     width: 100%;
     height: auto;
     max-width: 1400px;
-    margin: 1.5em auto;
+    margin: 0 auto 1.5em auto;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -460,10 +460,11 @@ main {
       min-width: 280px;
       max-width: 350px;
       height: auto;
+      min-height: 375px;
       display: block;
       border: 1px solid rgb(221, 221, 221);
       position: relative;
-      margin: 1.5rem 2%;
+      margin: 0 2% 3rem 2%;
       box-shadow: 0px 0px 3px 1px #ccc;
       overflow: hidden;
       text-align: center;
@@ -482,19 +483,9 @@ main {
         transition: 0.3s ease-in-out;
       }
       .folio__title {
-        font-size: 1.2em;
+        font-size: 1.5em;
         margin: 0.5rem 0;
-        //media breakpoint
-        @include mediaMd {
-          font-size: 1.2em;
-        }
-        @include mediaLg {
-          font-size: 1.2em;
-        }
-        @include mediaXl {
-          font-size: 1.2em;
-        }
-        //end of media breakpoint
+
       }
       .folio__details {
         width: 95%;

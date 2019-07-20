@@ -58,6 +58,10 @@ openGenre.addEventListener("click", () => {
 //Create Movie cards - Movie card template
 function createItems(poster, vote, id, title) {
   let imagePoster = `https://image.tmdb.org/t/p/w500${poster}`;
+  if (poster == null) {
+    imagePoster =
+      "https://www.themoviedb.org/assets/1/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg";
+  }
   output += `<li class="list-item" data-attribute="${id}">
                 <img src="${imagePoster}" alt="${title}" class="poster">
                 <p class="vote">${vote}</p>
@@ -102,8 +106,11 @@ let searchMovie = e => {
   if (text === "") {
     uri = `${baseUrl}movie/${choices}?api_key=${api_key}&language=en-US&page=`;
   } else {
+    let activeGenre = document.querySelector(".active-li");
+    let genList = document.querySelectorAll(".genre_li");
+    activeGenre.classList.remove("active-li");
+    genList[0].classList.add("active-li");
     uri = `${baseUrl}search/movie?api_key=${api_key}&language=en-US&query=${text}&page=`;
-    console.log(uri);
   }
   output = "";
   loadData(uri);
@@ -206,6 +213,7 @@ let loadData = url => {
           return val.genre_ids.indexOf(x) !== -1;
         });
         let genreResSliced = dataRes.slice(currentIndex, indexPerPage);
+        console.log(genreResSliced);
         let pageCounter = Math.ceil(dataRes.length / indexPerPage);
         output = "";
         genreResSliced.forEach(movie => {
