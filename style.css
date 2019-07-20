@@ -743,10 +743,10 @@ main #contact .contact__animate {
 }
 
 #folio ul .folio__li .folio__details {
-  width: 95%;
+  width: 90%;
   height: auto;
   margin: 0.5rem auto 1rem auto;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 #folio ul .folio__li .folio__links {
