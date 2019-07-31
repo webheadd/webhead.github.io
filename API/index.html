@@ -9,10 +9,21 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+      <ul>
+        <li id="logo">browse</li>
+        <li>
+          <input type="text" placeholder="Search here..." id="searchBox" />
+          <input type="button" id="searchBtn" value="Search" />
+        </li>
+      </ul>
+    </nav>
+    <!-- CAROUSEL -->
+    <div id="carousel">
+      <ul id="carousel__con"></ul>
+    </div>
     <main id="container">
-      <div id="top_part">
-        <header id="header">Project: <span>ajax</span></header>
-      </div>
       <!-- modal -->
       <div id="modal-con">
         <p id="closeModal">Close</p>
@@ -20,26 +31,33 @@
       </div>
       <!-- search -->
       <div id="menubar">
-        <input type="text" placeholder="Search here..." id="searchBox" />
-        <select name="Drop Menu" id="dropMenu">
-          <option value="popular">Popular</option>
-          <option value="top_rated">Top Rated</option>
-          <option value="now_playing">Now Showing</option>
-        </select>
-      </div>
-      <!-- Genre Categories -->
-      <div id="genres">
-        <p id="genreBtn">Genre<i class="fas fa-angle-down"></i></p>
-        <ul id="genres_con"></ul>
+        <p id="type">
+          <span class="typeBtn actv" data-attribute="popular">Popular</span>
+          <span class="typeSlash">/</span>
+          <span class="typeBtn" data-attribute="top_rated">Top Rated</span>
+          <span class="typeSlash">/</span>
+          <span class="typeBtn" data-attribute="now_playing">Now Showing</span>
+        </p>
+        <!-- Genre Categories -->
+        <select id="genres_con"></select>
       </div>
 
       <!-- render -->
+      <p id="renderTitle">Popular Movies</p>
       <div id="renderContainer">
         <ul id="demo"></ul>
       </div>
       <!-- pagination -->
       <ul id="pagination"></ul>
     </main>
+
+    <footer>
+      <p class="foot_text">Coded by Rodolfo Sta. Maria</p>
+      <p class="foot_text">
+        Powered by
+        <a href="https://www.themoviedb.org/" target="_blank">TheMovieDB</a>
+      </p>
+    </footer>
     <script src="https://kit.fontawesome.com/a39ed74a47.js"></script>
     <script src="main.js"></script>
   </body>

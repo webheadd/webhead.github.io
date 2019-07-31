@@ -1,18 +1,27 @@
 let ul = document.getElementById("demo");
-let menu = document.getElementById("dropMenu");
+let typeBtn = document.querySelectorAll(".typeBtn");
 let search = document.getElementById("searchBox");
+let searchBtn = document.getElementById("searchBtn");
 let modalContainer = document.getElementById("modal-con");
 let modalContent = document.getElementById("modal");
 let closeBtn = document.getElementById("closeModal");
 let pagination = document.getElementById("pagination");
+let carouselCon = document.getElementById("carousel__con");
+let carouselItem = document.getElementsByClassName("carousel__item");
+let navBar = document.getElementById("navbar");
+let renderTitle = document.getElementById("renderTitle");
+let genCon = document.getElementById("genres_con");
 
 let output = "";
 let modal = "";
 let pageOutPut = "";
 let genre_output = "";
+let carousel = "";
+let slideIndex = 0;
+let myTimer = 5000;
+let loading = true;
 
 let li = document.getElementsByClassName("list-item");
-let loader = document.getElementById("loader");
 
 //Genre object
 const Genre = [
@@ -42,36 +51,90 @@ const Genre = [
 let api_key = "e0a2e02905a8a197ce79913b80c65105";
 let baseUrl = "https://api.themoviedb.org/3/";
 let baseImageUrl = "https://image.tmdb.org/t/p/original";
-let choices = menu.options[menu.selectedIndex].value;
+let choices = document.querySelector(".actv").getAttribute("data-attribute");
+
+//Movie choices - Popular, Top Rated or Now Showing
+typeBtn.forEach(el => {
+  el.addEventListener("click", e => {
+    //if not equals to true execute then make it true then wait to finish and make it false again
+    //prevents to fire 2 times. This waits until the loading is done before firing another
+    if (!loading) {
+      loading = true;
+      let activeType = document.querySelector(".actv");
+      //remove and add active class to - Movie choice (Popular, top rated, now showing)
+      activeType.classList.remove("actv");
+      e.target.classList.add("actv");
+
+      switch (e.target.innerHTML) {
+        case "Popular":
+          renderTitle.innerHTML = "Popular Movies";
+          choices = "popular";
+          break;
+        case "Top Rated":
+          renderTitle.innerHTML = "Top Rated";
+          choices = "top_rated";
+          break;
+        case "Now Showing":
+          renderTitle.innerHTML = "Now Showing";
+          choices = "now_playing";
+          break;
+      }
+      search.value = "";
+      let link = `${baseUrl}movie/${choices}?api_key=${api_key}&language=en-US&page=`;
+      output = "";
+      //   ul.innerHTML = "";
+      loadData(link);
+      genCon.selectedIndex = "0";
+    }
+  });
+});
+
+//navbar
+let navHeight = navBar.clientHeight;
+let prevSet = 0;
+window.onscroll = () => {
+  let currentOffset = document.body.getBoundingClientRect().top;
+  currentOffset < prevSet
+    ? navBar.classList.add("navActive")
+    : navBar.classList.remove("navActive");
+  prevSet = currentOffset;
+};
 
 //create genre buttons
-let genCon = document.getElementById("genres_con");
 Genre.forEach(el => {
-  genre_output += `<li class="genre_li" data-id="${el.id}">${el.name}</li>`;
+  genre_output += `<option value="${el.id}">${el.name}</option>`;
   genCon.innerHTML = genre_output;
 });
-let openGenre = document.getElementById("genreBtn");
 
-openGenre.addEventListener("click", () => {
-  genCon.classList.toggle("openGenreList");
-});
 //Create Movie cards - Movie card template
-function createItems(poster, vote, id, title) {
+const createItems = (poster, vote, id, title) => {
   let imagePoster = `https://image.tmdb.org/t/p/w500${poster}`;
   if (poster == null) {
     imagePoster =
       "https://www.themoviedb.org/assets/1/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg";
   }
-  output += `<li class="list-item" data-attribute="${id}">
-                <img src="${imagePoster}" alt="${title}" class="poster">
+  output += `<li class="list-item" data-attribute="${id}" style="background: linear-gradient(
+                rgba(0, 0, 0, 0) 4%,
+                rgba(0, 0, 0, 0) 50%,
+                rgba(0, 0, 0, 1) 100%
+              ), url(${imagePoster})">
                 <p class="vote">${vote}</p>
+                <p class="movie__title">${title}</p>
               </li>`;
 
   ul.innerHTML = output;
-}
+};
 
 //Create Modal - Modal template
-function createModal(poster, overview, title, runtime, genre, release, date) {
+const createModal = (
+  poster,
+  overview,
+  title,
+  runtime,
+  genre,
+  release,
+  date
+) => {
   let image = `${baseImageUrl}${poster}`;
   if (poster == null) {
     image =
@@ -87,7 +150,7 @@ function createModal(poster, overview, title, runtime, genre, release, date) {
         <li class="modal_li"><strong>Release Date</strong>: ${date}</li>
     </ul>`;
   modalContent.innerHTML = modal;
-}
+};
 
 //Close modal
 closeBtn.addEventListener("click", () => {
@@ -98,40 +161,30 @@ closeBtn.addEventListener("click", () => {
 window.onload = () => {
   let uri = `${baseUrl}movie/${choices}?api_key=${api_key}&language=en-US&page=`;
   loadData(uri);
+  loadCarousel();
 };
-/* -------SEARCH BOX------- */
-let searchMovie = e => {
-  let text = e.target.value;
-  let uri;
-  if (text === "") {
-    uri = `${baseUrl}movie/${choices}?api_key=${api_key}&language=en-US&page=`;
-  } else {
-    let activeGenre = document.querySelector(".active-li");
-    let genList = document.querySelectorAll(".genre_li");
-    activeGenre.classList.remove("active-li");
-    genList[0].classList.add("active-li");
-    uri = `${baseUrl}search/movie?api_key=${api_key}&language=en-US&query=${text}&page=`;
-  }
+/* -------SEARCH FUNCTION------- */
+const searchMovie = () => {
+  let text = search.value;
+  let uri = `${baseUrl}search/movie?api_key=${api_key}&language=en-US&query=${text}&page=`;
+  if (text === "") return;
   output = "";
   loadData(uri);
-};
-search.addEventListener("keyup", searchMovie);
-
-//drop down menu
-menu.addEventListener("change", e => {
-  choices = e.target.value;
-  let activeGenre = document.querySelector(".active-li");
-  let genList = document.querySelectorAll(".genre_li");
-  activeGenre.classList.remove("active-li");
-  genList[0].classList.add("active-li");
   search.value = "";
-  let link = `${baseUrl}movie/${choices}?api_key=${api_key}&language=en-US&page=`;
-  output = "";
-  loadData(link);
+  genCon.selectedIndex = "0";
+};
+
+searchBtn.addEventListener("click", searchMovie);
+
+//trigger search if hit enter
+search.addEventListener("keydown", e => {
+  if (e.keyCode === 13) searchBtn.click();
 });
 
 //fetch data from API
-let loadData = url => {
+const loadData = url => {
+  pagination.innerHTML = "";
+  ul.innerHTML = `<li id="loader"></li>`;
   let arr = [];
   let arr1 = new Array();
   for (let x = 1; x < 11; x++) {
@@ -142,7 +195,6 @@ let loadData = url => {
     data.forEach(res => {
       arr1.push(res.results);
     });
-
     let newArray = Array.prototype.concat.apply([], arr1);
     //pagination declaration --START
     let currentIndex = 0;
@@ -151,95 +203,153 @@ let loadData = url => {
     let newArr = newArray.slice(currentIndex, indexPerPage);
     //--END
 
-    output = "";
-    newArr.forEach(movie => {
-      createItems(movie.poster_path, movie.vote_average, movie.id, movie.title);
-      setTimeout(() => {
-        for (let i = 0; i < li.length; i++) {
-          li[i].classList.add("animate");
-        }
-      }, 300);
-    });
-
-    iterateListItem(li);
-
-    //create pagination
-    pageOutPut = "";
-    createPagination(pageCount);
-
-    //pagination event
-    pageOnClick(newArray, indexPerPage);
+    //HTML OUTPUT
+    setTimeout(() => {
+      ul.innerHTML = "";
+      newArr.forEach(movie => {
+        createItems(
+          movie.poster_path,
+          movie.vote_average,
+          movie.id,
+          movie.title
+        );
+        setTimeout(() => {
+          for (let i = 0; i < li.length; i++) {
+            li[i].classList.add("animate");
+          }
+        }, 300);
+      });
+      iterateListItem(li);
+      //create pagination
+      pageOutPut = "";
+      createPagination(pageCount);
+      //pagination event
+      pageOnClick(newArray, indexPerPage);
+      loading = false;
+    }, 1000);
 
     //add onclick event in genre buttons
-    let genList = document.querySelectorAll(".genre_li");
-    genList[0].classList.add("active-li");
-    genList.forEach(elem => {
-      elem.addEventListener("click", e => {
-        let activeGenre = document.querySelector(".active-li");
-        let x = parseInt(e.currentTarget.getAttribute("data-id"));
-        if (e.currentTarget.className !== "genre_li active-li") {
-          activeGenre.classList.remove("active-li");
-          e.currentTarget.classList.add("active-li");
-        }
-        if (x === 0) {
-          output = "";
-          newArr.forEach(movie => {
-            createItems(
-              movie.poster_path,
-              movie.vote_average,
-              movie.id,
-              movie.title
-            );
-            setTimeout(() => {
-              for (let i = 0; i < li.length; i++) {
-                li[i].classList.add("animate");
-              }
-            }, 300);
-          });
-          iterateListItem(li);
-
-          //create pagination
-          pageOutPut = "";
-          createPagination(pageCount);
-
-          //pagination event
-          pageOnClick(newArray, indexPerPage);
-
-          //close Genre list
-          genCon.classList.remove("openGenreList");
-        }
-        //Filter data by genre
-        let dataRes = newArray.filter(val => {
-          return val.genre_ids.indexOf(x) !== -1;
-        });
-        let genreResSliced = dataRes.slice(currentIndex, indexPerPage);
-        console.log(genreResSliced);
-        let pageCounter = Math.ceil(dataRes.length / indexPerPage);
+    genCon.addEventListener("change", e => {
+      let x = parseInt(e.target.value);
+      if (x === 0) {
         output = "";
-        genreResSliced.forEach(movie => {
-          createItems(movie.poster_path, movie.vote_average, movie.id);
+        newArr.forEach(movie => {
+          createItems(
+            movie.poster_path,
+            movie.vote_average,
+            movie.id,
+            movie.title
+          );
           setTimeout(() => {
             for (let i = 0; i < li.length; i++) {
               li[i].classList.add("animate");
             }
-          }, 100);
+          }, 300);
         });
-
         iterateListItem(li);
 
         //create pagination
         pageOutPut = "";
-        createPagination(pageCounter);
-        pageOnClick(dataRes, indexPerPage);
+        createPagination(pageCount);
 
-        //close Genre list
-        genCon.classList.remove("openGenreList");
+        //pagination event
+        pageOnClick(newArray, indexPerPage);
+      }
+      //Filter data by genre
+      let dataRes = newArray.filter(val => {
+        return val.genre_ids.indexOf(x) !== -1;
       });
+      let genreResSliced = dataRes.slice(currentIndex, indexPerPage);
+      let pageCounter = Math.ceil(dataRes.length / indexPerPage);
+      output = "";
+      genreResSliced.forEach(movie => {
+        createItems(
+          movie.poster_path,
+          movie.vote_average,
+          movie.id,
+          movie.title
+        );
+        setTimeout(() => {
+          for (let i = 0; i < li.length; i++) {
+            li[i].classList.add("animate");
+          }
+        }, 100);
+      });
+
+      iterateListItem(li);
+
+      //create pagination
+      pageOutPut = "";
+      createPagination(pageCounter);
+      pageOnClick(dataRes, indexPerPage);
+
+      //close Genre list
     });
   });
 };
+//load Carousel images
+const loadCarousel = () => {
+  const url = `${baseUrl}movie/popular?api_key=${api_key}&language=en-US&page=1`;
+  fetch(url)
+    .then(data => {
+      return data.json();
+    })
+    .then(result => {
+      //get backdrop path
+      const carouselImages = result.results.map(el => {
+        return el.backdrop_path;
+      });
+      //get title
+      const carouselTitle = result.results.map(el => {
+        return el.title;
+      });
+
+      //creater carousel
+      getCarouselImg(carouselImages, carouselTitle);
+
+      //position carousel items on side of each other
+      for (let i = 0; i < carouselItem.length; i++) {
+        carouselItem[i].style.left = i * 100 + "%";
+      }
+
+      //animate carousel slides
+      carouselSlide();
+    });
+  // CAROUSEL
+};
+
+//Create Carousel
+
+const getCarouselImg = (backdrop, title) => {
+  for (let i = 0; i < 5; i++) {
+    // let randomizer = Math.floor(Math.random() * backdrop.length);
+    let image = `${baseImageUrl}${backdrop[i]}`;
+    if (backdrop[i] === null) image = `/images/moviedb.jpg`;
+    carousel += `<li class="carousel__item" style="background: linear-gradient(
+                  rgba(0, 0, 0, 0) 4%,
+                  rgba(0, 0, 0, 0) 30%,
+                  rgba(0, 0, 0, 0.9) 100%
+                ), url('${image}');">
+                      <p class='carousel__header'>${title[i]}</p>
+                  </li>`;
+
+    carouselCon.innerHTML = carousel;
+  }
+};
+
+//auto slide carousel
+const carouselSlide = () => {
+  // let width = carouselItem[0].clientWidth;
+  setInterval(() => {
+    slideIndex++;
+    if (slideIndex > carouselItem.length - 1) slideIndex = 0;
+    let total = slideIndex * 100;
+    carouselCon.style.transform = `translateX(-${total}%)`;
+  }, myTimer);
+};
+
 //Add click event to each movie card and shows modal details when clicked
-let iterateListItem = list => {
+const iterateListItem = list => {
   Array.from(list).forEach(elem => {
     elem.addEventListener("click", e => {
       //grab movie id from data-attribute
@@ -249,6 +359,7 @@ let iterateListItem = list => {
 
       //use url as parameter to call for details
       getDetails(detailsUrl);
+
       window.scrollTo(0, 0);
       //shows modal
       modalContainer.style.transform = "scale(1)";
@@ -256,20 +367,20 @@ let iterateListItem = list => {
   });
 };
 //create Pagination
-let createPagination = totalPage => {
+const createPagination = totalPage => {
   for (let x = 0; x < totalPage; x++) {
     pageOutPut += `<li class="pageNum" value="${x}">${x + 1}</li>`;
     pagination.innerHTML = pageOutPut;
   }
 };
 //pagination event
-let pageOnClick = (arr, itemsPage) => {
+const pageOnClick = (arr, itemsPage) => {
   let page = document.querySelectorAll(".pageNum");
   //add initial active class to first page
   page[0].classList.add("active");
   page.forEach(elem => {
     elem.addEventListener("click", e => {
-      window.scrollTo(0, 0);
+      window.scrollTo(0, document.getElementById("renderTitle").offsetTop * 3);
       //remove active class to current active page then add active to target page
       let activePage = document.querySelector(".active");
       if (e.currentTarget.className === "pageNum active") {
@@ -288,7 +399,12 @@ let pageOnClick = (arr, itemsPage) => {
       //create elements using sliced array
       output = "";
       slicedArray.forEach(movie => {
-        createItems(movie.poster_path, movie.vote_average, movie.id);
+        createItems(
+          movie.poster_path,
+          movie.vote_average,
+          movie.id,
+          movie.title
+        );
         setTimeout(() => {
           for (let i = 0; i < li.length; i++) {
             li[i].classList.add("animate");
@@ -301,7 +417,7 @@ let pageOnClick = (arr, itemsPage) => {
 };
 
 //load movie details to display in modal
-let getDetails = url => {
+const getDetails = url => {
   fetch(url)
     .then(res => {
       return res.json();
