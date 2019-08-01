@@ -108,7 +108,7 @@ Genre.forEach(el => {
 
 //Create Movie cards - Movie card template
 const createItems = (poster, vote, id, title) => {
-  let imagePoster = `https://image.tmdb.org/t/p/w500${poster}`;
+  let imagePoster = `https://image.tmdb.org/t/p/w300${poster}`;
   if (poster == null) {
     imagePoster =
       "https://www.themoviedb.org/assets/1/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg";
@@ -156,7 +156,7 @@ const createModal = (
 closeBtn.addEventListener("click", () => {
   modal = "";
   modalContent.innerHTML = "";
-  modalContainer.style.transform = "scale(0)";
+  modalContainer.style.display = "none";
 });
 window.onload = () => {
   let uri = `${baseUrl}movie/${choices}?api_key=${api_key}&language=en-US&page=`;
@@ -362,7 +362,7 @@ const iterateListItem = list => {
 
       window.scrollTo(0, 0);
       //shows modal
-      modalContainer.style.transform = "scale(1)";
+      modalContainer.style.display = "block";
     });
   });
 };
