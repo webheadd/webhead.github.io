@@ -93,6 +93,7 @@ typeBtn.forEach(el => {
 let navHeight = navBar.clientHeight;
 let prevSet = 0;
 window.onscroll = () => {
+  // if (navBar.getBoundingClientRect().top == 0) navBar.style.background = "blue";
   let currentOffset = document.body.getBoundingClientRect().top;
   currentOffset < prevSet
     ? navBar.classList.add("navActive")
@@ -184,7 +185,7 @@ search.addEventListener("keydown", e => {
 //fetch data from API
 const loadData = url => {
   pagination.innerHTML = "";
-  ul.innerHTML = `<li id="loader"></li>`;
+  ul.innerHTML = `<li class="loader"></li>`;
   let arr = [];
   let arr1 = new Array();
   for (let x = 1; x < 11; x++) {
@@ -418,12 +419,14 @@ const pageOnClick = (arr, itemsPage) => {
 
 //load movie details to display in modal
 const getDetails = url => {
+  modalContent.innerHTML = `<p class="loader modal_loader"></p>`;
   fetch(url)
     .then(res => {
       return res.json();
     })
     .then(data => {
       let genre = data.genres.map(genres => genres.name).join(", ");
+      modalContent.innerHTML = "";
       createModal(
         data.backdrop_path,
         data.overview,
