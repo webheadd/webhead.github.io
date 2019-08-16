@@ -1,6 +1,6 @@
 window.onload = () => {
   var navMenu = document.querySelector("#nav");
-
+  var headBar = document.getElementsByTagName("header");
   var navLinks = document.querySelectorAll(".nav__link");
 
   var sec_head = document.querySelectorAll(".section__header");
@@ -12,8 +12,13 @@ window.onload = () => {
   //animate when scrolled
   window.addEventListener("scroll", animate);
   var currentPosition = window.innerHeight / 1.2;
-
   function animate() {
+    if (window.scrollY > 200) {
+      console.log("true");
+      headBar[0].style.background = "#2f3134";
+    } else {
+      headBar[0].style.background = "transparent";
+    }
     header();
     folio();
     aboutDesc();

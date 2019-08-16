@@ -89,18 +89,6 @@ typeBtn.forEach(el => {
   });
 });
 
-//navbar
-let navHeight = navBar.clientHeight;
-let prevSet = 0;
-window.onscroll = () => {
-  // if (navBar.getBoundingClientRect().top == 0) navBar.style.background = "blue";
-  let currentOffset = document.body.getBoundingClientRect().top;
-  currentOffset < prevSet
-    ? navBar.classList.add("navActive")
-    : navBar.classList.remove("navActive");
-  prevSet = currentOffset;
-};
-
 //create genre buttons
 Genre.forEach(el => {
   genre_output += `<option value="${el.id}">${el.name}</option>`;

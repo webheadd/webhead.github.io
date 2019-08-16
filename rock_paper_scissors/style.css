@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial';
+}
+body {
+    background: black;
+}
+ul {
+    list-style-type: none;
+}
+#wrapper {
+    width: 500px;
+    height: 250px;
+    background: white;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    top: 100px;
+}
+#container {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#wrapper h1 {
+    margin-bottom: 10px;
+}
+#wrapper p {
+    font-size: 25px;
+}
+ul li {
+    cursor: pointer;
+    display: inline-block;
+    border: 1px solid black;
+    padding: 18px 24px;
+    border-radius: 100%;
+    margin: 10px 20px 10px 0;
+    background: black;
+    color: white;
+    
+}
+ul li:last-child {
+    margin-right: 0;
+}
+#score {
+    display: block;
+    width: 100px;
+    margin: 10px auto;
+    border: 1px solid black;
+    padding: 8px;
+}
+#score::before {
+    content: "YOU";
+    position: absolute;
+    font-size: 10px;
+    color: white;
+    left:  177px;
+    top: 60px;
+    padding: 5px;
+    background: black;
+}
+#score::after {
+    content: "COM";
+    position: absolute;
+    font-size: 10px;
+    color: white;
+    left:  290px;
+    top: 60px;
+    padding: 5px;
+    background: black;
+}
+#container p:last-child {
+    font-size: 20px;
+}

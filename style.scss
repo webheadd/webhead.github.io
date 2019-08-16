@@ -80,7 +80,13 @@ header {
   background: $secondary;
   position: fixed;
   z-index: 10;
-
+  transition: background 0.3s ease-in-out;
+  @include mediaLg {
+    background: transparent;
+  }
+  @include mediaXl {
+    background: transparent;
+  }
   #logo {
     padding: 0.5em;
     cursor: pointer;
@@ -114,7 +120,7 @@ header {
     left: 0;
     transform: translateX(-100%);
     z-index: 5;
-    transition: all 0.3s ease-in;
+    transition: transform 0.3s ease-in-out;
     //media breakpoint
     @include mediaLg {
       display: block;
@@ -123,11 +129,13 @@ header {
       height: auto;
       width: 80%;
       margin: 0 5% 0 0.5em;
+      background: transparent;
     }
     @include mediaXl {
       display: block;
       position: relative;
       transform: translateX(0);
+      background: transparent;
       height: auto;
       width: 80%;
       margin: 0 5% 0 0.5em;
@@ -355,10 +363,10 @@ main {
     font-size: 1em;
   }
   @include mediaLg {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
   @include mediaXl {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
   //end of media breakpoint
   #banner_overlay {
@@ -368,8 +376,7 @@ main {
     background: rgba($primary, 0.9);
   }
   h1 {
-    margin-bottom: 0.7em;
-
+    margin-bottom: 0.5em;
     @include in;
     animation: scrollAnimation 0.5s 0.5s ease-in forwards;
     span {
@@ -378,6 +385,8 @@ main {
   }
   h2 {
     margin-bottom: 0.7em;
+    text-transform: none;
+    color: rgb(197, 197, 197);
     @include in;
     animation: scrollAnimation 0.5s 1s ease-in forwards;
   }
@@ -390,7 +399,7 @@ main {
     text-transform: uppercase;
     position: relative;
     margin-top: 0.5em;
-    transition: 0.3s ease-in-out;
+    transition: animation 0.3s ease-in-out;
     font-weight: bolder;
     @include in;
     animation: scrollAnimation 0.5s 1s ease-in forwards;
@@ -406,25 +415,8 @@ main {
       font-size: 0.6em;
     }
     //end of media breakpoint
-
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 255, 240, 0.9);
-      z-index: -1;
-      transform: scaleX(0);
-      transition: 0.3s ease-in-out;
-    }
-    &:hover::before {
-      transform: scaleX(1);
-    }
     &:hover {
-      color: $primary;
+      box-shadow: 0px 0px 4px #fff;
     }
   }
 }
@@ -465,7 +457,7 @@ main {
       border: 1px solid rgb(221, 221, 221);
       position: relative;
       margin: 0 2% 3rem 2%;
-      box-shadow: 0px 0px 3px 1px #ccc;
+      box-shadow: 0px 2px 4px #ccc;
       overflow: hidden;
       text-align: center;
       border-radius: 5px;
@@ -481,10 +473,12 @@ main {
         width: 100%;
         height: auto;
         transition: 0.3s ease-in-out;
+        display: block;
       }
       .folio__title {
         font-size: 1.5em;
         margin: 0.5rem 0;
+        padding: 0.5rem 0;
 
       }
       .folio__details {
