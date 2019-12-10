@@ -202,6 +202,7 @@ const loadData = url => {
           movie.id,
           movie.title
         );
+        console.log(movie.id);
         setTimeout(() => {
           for (let i = 0; i < li.length; i++) {
             li[i].classList.add("animate");
@@ -296,13 +297,10 @@ const loadCarousel = () => {
       //creater carousel
       getCarouselImg(carouselImages, carouselTitle);
 
-      //position carousel items on side of each other
-      for (let i = 0; i < carouselItem.length; i++) {
-        carouselItem[i].style.left = i * 100 + "%";
-      }
-
       //animate carousel slides
-      carouselSlide();
+      setInterval(() => {
+        carouselSlide();
+      }, myTimer);
     });
   // CAROUSEL
 };
@@ -311,10 +309,11 @@ const loadCarousel = () => {
 
 const getCarouselImg = (backdrop, title) => {
   for (let i = 0; i < 5; i++) {
+    let carouselArrayClass = ["actv", "nxt", "oldNxt", "oldPrv", "prv"];
     // let randomizer = Math.floor(Math.random() * backdrop.length);
     let image = `${baseImageUrl}${backdrop[i]}`;
     if (backdrop[i] === null) image = `/images/moviedb.jpg`;
-    carousel += `<li class="carousel__item" style="background: linear-gradient(
+    carousel += `<li class="carousel__item ${carouselArrayClass[i]}" style="background: linear-gradient(
                   rgba(0, 0, 0, 0) 4%,
                   rgba(0, 0, 0, 0) 30%,
                   rgba(0, 0, 0, 0.9) 100%
@@ -327,14 +326,37 @@ const getCarouselImg = (backdrop, title) => {
 };
 
 //auto slide carousel
+let currentSlide = 0;
 const carouselSlide = () => {
-  // let width = carouselItem[0].clientWidth;
-  setInterval(() => {
-    slideIndex++;
-    if (slideIndex > carouselItem.length - 1) slideIndex = 0;
-    let total = slideIndex * 100;
-    carouselCon.style.transform = `translateX(-${total}%)`;
-  }, myTimer);
+  currentSlide++;
+  if (currentSlide > carouselItem.length - 1) currentSlide = 0;
+  moveSlide(currentSlide);
+};
+/* carousel slider function */
+const moveSlide = slide => {
+  let slideNext = slide + 1;
+  let slidePrev = slide - 1;
+  let oldNext = slide + 2;
+  let oldPrev = slide - 2;
+
+  if (slideNext > carouselItem.length - 1) slideNext = 0;
+  if (slidePrev < 0) slidePrev = carouselItem.length - 1;
+  if (oldNext > carouselItem.length - 1)
+    oldNext = oldNext - carouselItem.length;
+  if (oldPrev < 0) oldPrev = carouselItem.length + oldPrev;
+
+  //remove current classes then
+  document.getElementsByClassName("prv")[0].classList.remove("prv");
+  document.getElementsByClassName("nxt")[0].classList.remove("nxt");
+  document.getElementsByClassName("oldPrv")[0].classList.remove("oldPrv");
+  document.getElementsByClassName("oldNxt")[0].classList.remove("oldNxt");
+  document.getElementsByClassName("actv")[0].classList.remove("actv");
+  //transfer classes to either next or previous
+  carouselItem[slideNext].classList.add("nxt");
+  carouselItem[slidePrev].classList.add("prv");
+  carouselItem[oldNext].classList.add("oldNxt");
+  carouselItem[oldPrev].classList.add("oldPrv");
+  carouselItem[slide].classList.add("actv");
 };
 
 //Add click event to each movie card and shows modal details when clicked
