@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Epson";
+  src: url("../assets/font/Bebas-Regular.ttf") format("truetype"), url("../assets/font/BebasNeue-Bold.ttf") format("truetype");
+}
+
+/*
+    xs, sm - mobile phones
+    md - tablet
+    lg - laptop/desktop
+*/
+/*# sourceMappingURL=media_queries.css.map */
