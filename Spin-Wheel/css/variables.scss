@@ -2,8 +2,8 @@
 $font-family: 'Epson';
 @font-face {
     font-family: $font-family;
-    src: url('/assets/font/Bebas-Regular.ttf') format('truetype'),
-         url('/assets/font/BebasNeue-Bold.ttf') format('truetype');
+    src: url('../assets/font/Bebas-Regular.ttf') format('truetype'),
+         url('../assets/font/BebasNeue-Bold.ttf') format('truetype');
 }
 $font-size: 10px;
 
